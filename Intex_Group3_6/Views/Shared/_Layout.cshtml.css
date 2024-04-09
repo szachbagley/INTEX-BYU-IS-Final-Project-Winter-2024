@@ -46,3 +46,33 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+/* _Layout.cshtml.css */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffd700; /* Yellow background */
+}
+
+.logo-container {
+  background-color: #ff0000; /* Red background */
+}
+
+.nav-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 2;
+}
+
+.nav-item {
+  padding: 10px 20px; /* Adjust padding as needed */
+  color: #ffffff; /* Text color */
+  text-decoration: none;
+}
+
+.signin-container {
+  background-color: #000000; /* Black background for the sign-in/register area */
+  padding: 10px 20px;
+}
