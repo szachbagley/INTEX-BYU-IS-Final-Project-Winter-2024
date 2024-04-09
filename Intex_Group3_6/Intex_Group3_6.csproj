@@ -26,10 +26,6 @@
     </ItemGroup>
 
     <ItemGroup>
-
-    </ItemGroup>
-
-    <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\qrcode\qrcode.min.js" />
     </ItemGroup>
 
