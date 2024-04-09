@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Intex_Group3_6.props" />
+</Project>
