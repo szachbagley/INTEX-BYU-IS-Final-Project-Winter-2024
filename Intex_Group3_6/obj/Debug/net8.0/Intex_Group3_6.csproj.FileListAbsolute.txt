@@ -578,7 +578,6 @@ C:\Users\szach\Source\Repos\Intex_Group3_6\Intex_Group3_6\obj\Debug\net8.0\refin
 C:\Users\szach\Source\Repos\Intex_Group3_6\Intex_Group3_6\obj\Debug\net8.0\Intex_Group3_6.pdb
 C:\Users\szach\Source\Repos\Intex_Group3_6\Intex_Group3_6\obj\Debug\net8.0\Intex_Group3_6.genruntimeconfig.cache
 C:\Users\szach\Source\Repos\Intex_Group3_6\Intex_Group3_6\obj\Debug\net8.0\ref\Intex_Group3_6.dll
-C:\Users\szach\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net8.0\app.db
 C:\Users\markjamesthuet\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\markjamesthuet\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net8.0\appsettings.json
 C:\Users\markjamesthuet\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net8.0\http-client.env.json

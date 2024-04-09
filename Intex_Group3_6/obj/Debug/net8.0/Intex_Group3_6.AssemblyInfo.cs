@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Intex_Group3_6")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7852996f225bf26f425df8dbbf63611137bd871d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cfdb98227b84f295a2cf8b967e15b51851d65952")]
 [assembly: System.Reflection.AssemblyProductAttribute("Intex_Group3_6")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Intex_Group3_6")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

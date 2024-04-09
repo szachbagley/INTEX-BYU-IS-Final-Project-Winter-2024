@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\markjamesthuet\\Source\\Repos\\Intex_Group3_6\\Intex_Group3_6\\Intex_Group3_6.csproj": {}
+    "C:\\Users\\szach\\Source\\Repos\\Intex_Group3_6\\Intex_Group3_6\\Intex_Group3_6.csproj": {}
   },
   "projects": {
-    "C:\\Users\\markjamesthuet\\Source\\Repos\\Intex_Group3_6\\Intex_Group3_6\\Intex_Group3_6.csproj": {
+    "C:\\Users\\szach\\Source\\Repos\\Intex_Group3_6\\Intex_Group3_6\\Intex_Group3_6.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\markjamesthuet\\Source\\Repos\\Intex_Group3_6\\Intex_Group3_6\\Intex_Group3_6.csproj",
+        "projectUniqueName": "C:\\Users\\szach\\Source\\Repos\\Intex_Group3_6\\Intex_Group3_6\\Intex_Group3_6.csproj",
         "projectName": "Intex_Group3_6",
-        "projectPath": "C:\\Users\\markjamesthuet\\Source\\Repos\\Intex_Group3_6\\Intex_Group3_6\\Intex_Group3_6.csproj",
-        "packagesPath": "C:\\Users\\markjamesthuet\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\markjamesthuet\\Source\\Repos\\Intex_Group3_6\\Intex_Group3_6\\obj\\",
+        "projectPath": "C:\\Users\\szach\\Source\\Repos\\Intex_Group3_6\\Intex_Group3_6\\Intex_Group3_6.csproj",
+        "packagesPath": "C:\\Users\\szach\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\szach\\Source\\Repos\\Intex_Group3_6\\Intex_Group3_6\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\markjamesthuet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\szach\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -100,7 +105,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
