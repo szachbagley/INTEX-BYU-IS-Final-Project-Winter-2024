@@ -6,13 +6,14 @@ using Intex_Group3_6.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
-                       throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var securityConnection = builder.Configuration.GetConnectionString("SecurityConnection") ??
+                       throw new InvalidOperationException("Connection string 'SecurityConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
+    options.UseSqlServer(securityConnection));
+
 
 var connectionString2 = builder.Configuration.GetConnectionString("SecondConnection") ??
-                       throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+                       throw new InvalidOperationException("Connection string 'SecondConnection' not found.");
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlite(connectionString2));
     //options.UseSqlServer(connectionString));
@@ -28,6 +29,13 @@ builder.Services.AddControllersWithViews();
 //    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
 //    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
 //});
+
+builder.Services.AddRazorPages();
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 
@@ -45,6 +53,8 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseSession();
 
 app.UseRouting();
 
