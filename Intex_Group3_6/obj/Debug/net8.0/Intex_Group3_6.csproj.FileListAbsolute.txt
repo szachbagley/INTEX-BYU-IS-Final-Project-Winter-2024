@@ -584,7 +584,6 @@ C:\Users\markjamesthuet\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net
 C:\Users\markjamesthuet\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net8.0\http-client.env.json
 C:\Users\markjamesthuet\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net8.0\http-client.private.env.json
 C:\Users\markjamesthuet\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net8.0\Intex_Group3_6.staticwebassets.runtime.json
-C:\Users\markjamesthuet\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net8.0\app.db
 C:\Users\markjamesthuet\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net8.0\Intex_Group3_6.exe
 C:\Users\markjamesthuet\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net8.0\Intex_Group3_6.deps.json
 C:\Users\markjamesthuet\Source\Repos\Intex_Group3_6\Intex_Group3_6\bin\Debug\net8.0\Intex_Group3_6.runtimeconfig.json
