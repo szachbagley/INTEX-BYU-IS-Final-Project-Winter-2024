@@ -12,7 +12,8 @@ public class Order
     public required int time { get; set; }
     public required string entryMode { get; set; }
     public required float transactionAmount { get; set; }
-    public required string countryOfTrnsaction { get; set; }
+    public required string typeOfTransaction { get; set; }
+    public required string countryOfTransaction { get; set; }
     public required string shippingAddress { get; set; }
     public required string bank { get; set; }
     public required string typeOfCard { get; set; }

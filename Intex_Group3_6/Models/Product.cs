@@ -14,7 +14,7 @@ public class Product
     public required string primaryColor { get; set; }
     public required string secondaryColor { get; set; }
     public required string description { get; set; }
-    private string? category1 { get; set; }
-    private string? category2 { get; set; }
-    private string? category3 { get; set; }
+    public string? category1 { get; set; }
+    public string? category2 { get; set; }
+    public string? category3 { get; set; }
 }
