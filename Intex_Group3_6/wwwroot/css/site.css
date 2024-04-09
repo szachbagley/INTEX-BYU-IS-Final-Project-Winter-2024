@@ -19,9 +19,6 @@ html {
 
 body {
   margin-bottom: 60px;
-}
-
-body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   margin: 0;
@@ -53,3 +50,4 @@ section {
   max-width: 50%; /* Adjust the width as needed */
   height: 500px; /* Maintain aspect ratio */
 }
+
