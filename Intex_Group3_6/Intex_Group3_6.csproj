@@ -26,11 +26,14 @@
     </ItemGroup>
 
     <ItemGroup>
-
+      <_ContentIncludedByDefault Remove="wwwroot\qrcode\qrcode.min.js" />
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="wwwroot\qrcode\qrcode.min.js" />
+      <Content Update="fraud_model.onnx">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>
