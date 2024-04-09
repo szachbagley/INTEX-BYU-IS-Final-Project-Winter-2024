@@ -33,4 +33,10 @@
       <_ContentIncludedByDefault Remove="wwwroot\qrcode\qrcode.min.js" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="app.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
