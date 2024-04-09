@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Intex_Group3_6.Models;
 
 public class Order
 {
+    [Key]
     public required int transactionId { get; set; }
     public required int userId { get; set; }
     public required DateTime transactionDate { get; set; }

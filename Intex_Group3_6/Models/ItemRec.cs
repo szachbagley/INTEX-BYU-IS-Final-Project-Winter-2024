@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Intex_Group3_6.Models;
 
 public class ItemRec
 {
+    [Key]
     public required string item { get; set; }
     public string? rec1 { get; set; }
     public string? rec2 { get; set; }

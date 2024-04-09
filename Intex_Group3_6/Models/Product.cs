@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Intex_Group3_6.Models;
 
 public class Product
 {
+    [Key]
     public required int productId { get; set; }
     public required string productName { get; set; }
     public required int year { get; set; }
