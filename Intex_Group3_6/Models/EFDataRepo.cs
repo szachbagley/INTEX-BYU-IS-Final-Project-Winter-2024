@@ -7,6 +7,17 @@ public class EFDataRepo : IDataRepo
     { 
         _context = temp;
     }
+    
+    public void AddUser(User user) // Use this to add a user to the database
+    {
+        _context.Users.Add(user);
+    }
+    
+    public void SaveChanges() // Use this to save any changes to the database
+    {
+        _context.SaveChanges();
+    }
+
     public IEnumerable<AvgRating> AvgRatings => _context.AvgRatings;
 
     public IEnumerable<RatedProducts> GetRatingsWithPictures()
@@ -28,5 +39,4 @@ public class EFDataRepo : IDataRepo
     }
 
     public IQueryable<Product> Products => _context.Products;
-
 }
