@@ -20,4 +20,18 @@ public class AdminController : Controller
 
         return View(model);
     }
+    
+    public IActionResult AdminUsers(int pageNum = 1)
+    {
+        var model = _repo.GetUsers(pageNum);
+
+        return View(model);
+    }
+    
+    public IActionResult AdminProducts(int pageNum = 1, int pageSize = 10)
+    {
+        var model = _repo.GetProducts(pageNum, pageSize);
+        ViewBag.PageSize = pageSize;
+        return View(model);
+    }
 }

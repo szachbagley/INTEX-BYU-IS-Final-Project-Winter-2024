@@ -1,0 +1,53 @@
+
+@{
+    ViewData["Title"] = "Admin Products";
+}
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model AdminProductsViewModel;
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Product Name</th>
+        <th>Year</th>
+        <th>Price</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Role</th>
+        <th></th> <!-- Empty header for the Delete button column -->
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var product in Model.Products) {
+        <tr>
+            <td>@product.productName</td>
+            <td>@product.year</td>
+            <td>@product.price</td>
+            <td>@product.numParts</td>
+            <td></td>
+            <td>
+                <form method="post" asp-controller="Admin" asp-action="AdminProducts" asp-route-id="@product.productId">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" asp-controller="Admin" asp-action="AdminProducts" asp-route-id="@product.productId">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<nav class="pagination nav-link">
+    <div page-model="@Model.PaginationInfo" page-action="AdminProducts" class="pagination"></div>
+    @* <select onchange="location.href = '@Url.Action("AdminProducts", "Admin")' + '?pageNum=1&pageSize=' + this.value"> *@
+    @*     <option value="10" @(ViewBag.PageSize == 10 ? "selected=\"selected\"" : "")>10</option> *@
+    @*     <option value="20" @(ViewBag.PageSize == 20 ? "selected=\"selected\"" : "")>20</option> *@
+    @*     <option value="50" @(ViewBag.PageSize == 50 ? "selected=\"selected\"" : "")>50</option> *@
+    @* </select> *@
+</nav>
+<br/><br/>
