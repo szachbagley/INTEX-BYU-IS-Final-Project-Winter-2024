@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Orders";
+}
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model AdminOrdersViewModel;
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Transaction ID</th>
+        <th>Customer ID</th>
+        <th>Customer Name</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Fraud</th>
+        <th></th> <!-- Empty header for the Delete button column -->
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var userOrder in Model.UserOrders) {
+        <tr>
+            <td>@userOrder.Orders.transactionId</td>
+            <td>@userOrder.Orders.userId</td>
+            <td>@(userOrder.Users.firstName + " " + userOrder.Users.lastName)</td>
+            <td>@userOrder.Orders.transactionDate.ToString("MM/dd/yyyy")</td>
+            <td>@userOrder.Orders.time</td>
+            <td>@userOrder.Orders.fraud</td>
+            <td>
+                <form method="post" asp-controller="Admin" asp-action="AdminOrders" asp-route-id="@userOrder.Orders.transactionId">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<nav class="pagination nav-link">
+  <div page-model="@Model.PaginationInfo" page-action="AdminOrders" class="pagination"></div>
+</nav>
+<br/><br/>

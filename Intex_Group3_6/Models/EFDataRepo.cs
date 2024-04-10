@@ -1,3 +1,5 @@
+using Intex_Group3_6.Models.ViewModels;
+
 namespace Intex_Group3_6.Models;
 
 public class EFDataRepo : IDataRepo
@@ -38,5 +40,35 @@ public class EFDataRepo : IDataRepo
         return query.ToList();
     }
 
+    public AdminOrdersViewModel GetOrders(int pageNum)
+    {
+        int pageSize = 100; // Or whatever your page size should be
+        var query = _context.Orders.Where(o => o.fraud == true)
+            .Join(_context.Users,
+                order => order.userId,
+                user => user.userId,
+                (order, user) => new UserOrders { Orders = order, Users = user });
+
+        // Here you would add pagination logic to the query
+        var pagedOrders = query.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+
+        var model = new AdminOrdersViewModel
+        {
+            UserOrders = pagedOrders.AsQueryable(),
+            PaginationInfo = new PaginationInfo
+            {
+                // Assign the properties of PaginationInfo accordingly
+                TotalItems = query.Count(),
+                ItemsPerPage = pageSize,
+                CurrentPage = pageNum,
+            }
+        };
+
+        return model;
+    }
+
+
+
     public IQueryable<Product> Products => _context.Products;
+
 }
