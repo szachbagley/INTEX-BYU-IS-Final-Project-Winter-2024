@@ -2,6 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model IQueryable<Object>
 
 <div class="container">
     <div class="row">
@@ -35,9 +36,21 @@
     <p class="mb-0 big-hey">Hey!</p>
     <p class="mb-0 personalized-message">For a more personalized experience, log in or create an account!</p>
     </div>
+    
+    @foreach (var item in Model)
+    {
+        <div>
+            <h2>@item.</h2>
+            <p>Average Rating: @item.AvgRating</p>
+            <p>Product Name: @item.ProductName</p>
+            <p>Image: <img src="@item.ProductImg" alt="@item.ProductName" /></p>
+            <!-- Display other product information as needed -->
+        </div>
+    }
 </div>
 
 <style>
+
     .bg-black {
         background-color: black;
     }
@@ -96,6 +109,6 @@
             max-width: 100%;
         }
 
-        
+       
 </style>
 
