@@ -26,7 +26,8 @@ public class EFDataRepo : IDataRepo
     {
         var query = (from rating in _context.AvgRatings
                          join product in _context.Products on rating.productId equals product.productId
-                         select new RatedProducts
+                     orderby rating.avgRating descending
+                     select new RatedProducts
                          {
                              productId = product.productId,
                              productName = product.productName,
