@@ -7,5 +7,15 @@ public class EFDataRepo : IDataRepo
     { 
         _context = temp;
     }
+    
+    public void AddUser(User user) // Use this to add a user to the database
+    {
+        _context.Users.Add(user);
+    }
+    
+    public void SaveChanges() // Use this to save any changes to the database
+    {
+        _context.SaveChanges();
+    }
 
 }

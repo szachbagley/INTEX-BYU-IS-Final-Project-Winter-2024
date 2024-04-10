@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using Intex_Group3_6.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -23,6 +24,8 @@ namespace Intex_Group3_6.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
+        private IDataRepo _repo;
+        
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
@@ -35,7 +38,8 @@ namespace Intex_Group3_6.Areas.Identity.Pages.Account
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IDataRepo repo)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -43,6 +47,7 @@ namespace Intex_Group3_6.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _repo = repo;
         }
 
         /// <summary>
@@ -51,6 +56,8 @@ namespace Intex_Group3_6.Areas.Identity.Pages.Account
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
+        [BindProperty]
+        public User NewUser { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -117,6 +124,22 @@ namespace Intex_Group3_6.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                
+                var newUser = new User
+                {
+                    userId = 0,
+                    firstName = NewUser.firstName,
+                    lastName = NewUser.lastName,
+                    birthDate = NewUser.birthDate,
+                    country = NewUser.country,
+                    gender = NewUser.gender,
+                    age = NewUser.age
+                    // Populate other properties as needed
+                };
+
+                // Save the new user using your repository
+                _repo.AddUser(newUser);
+                _repo.SaveChanges();
 
                 if (result.Succeeded)
                 {
