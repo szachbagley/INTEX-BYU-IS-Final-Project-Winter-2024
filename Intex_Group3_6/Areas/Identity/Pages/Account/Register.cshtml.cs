@@ -133,8 +133,8 @@ namespace Intex_Group3_6.Areas.Identity.Pages.Account
                     birthDate = NewUser.birthDate,
                     country = NewUser.country,
                     gender = NewUser.gender,
-                    age = NewUser.age
-                    // Populate other properties as needed
+                    age = NewUser.age,
+                    email = Input.Email
                 };
 
                 // Save the new user using your repository
