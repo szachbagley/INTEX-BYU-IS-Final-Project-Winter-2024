@@ -16,6 +16,8 @@ namespace Intex_Group3_6.Models
 
         IEnumerable<AvgRating> AvgRatings { get; }
 
+        public ProductDetailViewModel GetProductDetail(string productId);
+
         public IEnumerable<RatedProducts> GetRatingsWithPictures();
     }
 
