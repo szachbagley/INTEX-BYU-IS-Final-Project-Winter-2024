@@ -5,11 +5,6 @@ namespace Intex_Group3_6.Controllers
 {
     public class ProductsController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         private IDataRepo _repo;
 
         public ProductsController(IDataRepo repo)
