@@ -6,14 +6,14 @@ public class Product
 {
     [Key]
     public required int productId { get; set; }
-    public required string productName { get; set; }
-    public required int year { get; set; }
-    public required int numParts { get; set; }
-    public required float price { get; set; }
-    public required string imgLink { get; set; }
-    public required string primaryColor { get; set; }
-    public required string secondaryColor { get; set; }
-    public required string description { get; set; }
+    public string? productName { get; set; }
+    public int? year { get; set; }
+    public int? numParts { get; set; }
+    public float price { get; set; }
+    public string? imgLink { get; set; }
+    public string? primaryColor { get; set; }
+    public string? secondaryColor { get; set; }
+    public string? description { get; set; }
     public string? category1 { get; set; }
     public string? category2 { get; set; }
     public string? category3 { get; set; }

@@ -44,7 +44,7 @@ public class EFDataRepo : IDataRepo
     public AdminOrdersViewModel GetOrders(int pageNum)
     {
         int pageSize = 100; // Or whatever your page size should be
-        var query = _context.Orders.Where(o => o.fraud == true)
+        var query = _context.Orders.Where(o => o.fraud == "1")
             .Join(_context.Users,
                 order => order.userId,
                 user => user.userId,
@@ -68,7 +68,52 @@ public class EFDataRepo : IDataRepo
         return model;
     }
 
+    public AdminUsersViewModel GetUsers(int pageNum)
+    {
+        int pageSize = 50; // Or whatever your page size should be
+        var query = _context.Users;
 
+
+        // Here you would add pagination logic to the query
+        var pagedOrders = query.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+
+        var model = new AdminUsersViewModel
+        {
+            User = pagedOrders.AsQueryable(),
+            PaginationInfo = new PaginationInfo
+            {
+                // Assign the properties of PaginationInfo accordingly
+                TotalItems = query.Count(),
+                ItemsPerPage = pageSize,
+                CurrentPage = pageNum,
+            }
+        };
+
+        return model;
+    }
+    
+    public AdminProductsViewModel GetProducts(int pageNum, int pageSize)
+    {
+        var query = _context.Products;
+
+
+        // Here you would add pagination logic to the query
+        var pagedOrders = query.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+
+        var model = new AdminProductsViewModel
+        {
+            Products = pagedOrders.AsQueryable(),
+            PaginationInfo = new PaginationInfo
+            {
+                // Assign the properties of PaginationInfo accordingly
+                TotalItems = query.Count(),
+                ItemsPerPage = pageSize,
+                CurrentPage = pageNum,
+            }
+        };
+
+        return model;
+    }
 
     public IQueryable<Product> Products => _context.Products;
 
