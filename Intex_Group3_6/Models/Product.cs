@@ -7,8 +7,8 @@ public class Product
     [Key]
     public required int productId { get; set; }
     public string? productName { get; set; }
-    public int? year { get; set; }
-    public int? numParts { get; set; }
+    public int year { get; set; }
+    public int numParts { get; set; }
     public float price { get; set; }
     public string? imgLink { get; set; }
     public string? primaryColor { get; set; }
