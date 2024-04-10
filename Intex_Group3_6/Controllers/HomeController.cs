@@ -18,7 +18,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         // Retrieve top 10 reviewed LEGO sets
-        IQueryable<Object> top10Sets = _repo.GetTop10ReviewedSets();
+        var top10Sets = _repo.GetRatingsWithPictures();
 
         return View(top10Sets);
     } 

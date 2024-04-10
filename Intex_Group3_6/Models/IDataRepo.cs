@@ -5,6 +5,8 @@ namespace Intex_Group3_6.Models
 {
     public interface IDataRepo
     {
-        IQueryable<Object> GetTop10ReviewedSets();
+        IEnumerable<AvgRating> AvgRatings { get; }
+
+        public IEnumerable<RatedProducts> GetRatingsWithPictures();
     }
 }

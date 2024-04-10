@@ -16,7 +16,7 @@ namespace Intex_Group3_6.Controllers
         public IActionResult Index()
         {
             // Retrieve top 10 reviewed LEGO sets
-            var top10Sets = _repo.GetTop10ReviewedSets();
+            var top10Sets = _repo.GetRatingsWithPictures();
 
             return View(top10Sets);
         }
