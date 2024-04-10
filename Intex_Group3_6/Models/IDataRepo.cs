@@ -9,6 +9,8 @@ namespace Intex_Group3_6.Models
     {
         void AddUser(User user);
         void SaveChanges();
+
+        public IQueryable<User> GetUser(string email);
         
         public AdminOrdersViewModel GetOrders(int pageNum);
       

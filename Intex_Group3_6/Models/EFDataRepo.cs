@@ -20,6 +20,12 @@ public class EFDataRepo : IDataRepo
         _context.SaveChanges();
     }
 
+    public IQueryable<User> GetUser(string email)
+    {
+        var user = _context.Users.Where(e => e.email == email);
+        return user;
+    }
+
     public IEnumerable<AvgRating> AvgRatings => _context.AvgRatings;
 
     public IEnumerable<RatedProducts> GetRatingsWithPictures()
