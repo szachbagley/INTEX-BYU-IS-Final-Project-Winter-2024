@@ -38,7 +38,7 @@ namespace TheWaterProject.Infrastructure
                 IUrlHelper urlHelper = _urlHelperFactory.GetUrlHelper(ViewContext);
 
                 TagBuilder result = new TagBuilder("div");
-
+                
                 for (int i = 1; i <= PageModel.TotalPages; i++)
                 {
                     TagBuilder tag = new TagBuilder("a");
@@ -51,10 +51,31 @@ namespace TheWaterProject.Infrastructure
                         tag.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
                     }
 
-                    tag.InnerHtml.Append(i.ToString());
+                    // Add base class for pagination links
+                    tag.AddCssClass("page-link"); // Replace with your desired base class
+
+                    // Add styling for the current page
+                    if (i == PageModel.CurrentPage)
+                    {
+                        tag.AddCssClass("active"); // Replace with your desired class for active page
+                    }
+
+                    // Optional: Add disabled class for first and last pages (if applicable)
+                    if (i == 1 && !PageModel.HasPreviousPage)
+                    {
+                        tag.AddCssClass("disabled"); // Replace with your desired class for disabled links
+                    }
+                    else if (i == PageModel.TotalPages && !PageModel.HasNextPage)
+                    {
+                        tag.AddCssClass("disabled"); // Replace with your desired class for disabled links
+                    }
+
+                    // Your code to customize the content of the link (e.g., text or icons)
+                    tag.InnerHtml.Append(i.ToString()); // Or replace with your desired content
 
                     result.InnerHtml.AppendHtml(tag);
                 }
+
 
                 output.Content.AppendHtml(result.InnerHtml);
 

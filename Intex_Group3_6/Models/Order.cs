@@ -1,8 +1,9 @@
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
 namespace Intex_Group3_6.Models;
 
-public class Order
+public class Order : IEnumerable
 {
     [Key]
     public required int transactionId { get; set; }
@@ -18,4 +19,8 @@ public class Order
     public required string bank { get; set; }
     public required string typeOfCard { get; set; }
     public bool? fraud { get; set; }
+    public IEnumerator GetEnumerator()
+    {
+        throw new NotImplementedException();
+    }
 }
