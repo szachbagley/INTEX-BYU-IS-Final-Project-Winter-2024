@@ -5,6 +5,6 @@ namespace Intex_Group3_6.Models
 {
     public interface IDataRepo
     {
-        IQueryable<Object> GetTop10ReviewedSets();
+        IQueryable<object> GetTop10ReviewedSets();
     }
 }

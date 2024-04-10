@@ -7,9 +7,9 @@ public class EFDataRepo : IDataRepo
     { 
         _context = temp;
     }
-    public IQueryable<Object> GetTop10ReviewedSets()
+    public IEnumerable<object> GetTop10ReviewedSets()
     {
-        IQueryable<Object> joinedData = from AvgRating in _context.AvgRatings
+        var joinedData = from AvgRating in _context.AvgRatings
                          join Product in _context.Products
                          on AvgRating.productId equals Product.productId
                          select new
@@ -21,10 +21,12 @@ public class EFDataRepo : IDataRepo
                              AvgRating = AvgRating.avgRating
                          };
 
+        var joinedList = joinedData.ToArray();
+
        
 
 
-        return joinedData.OrderByDescending(r => r.AvgRating).Take(10);
+        return joinedList.OrderByDescending(r => r.AvgRating).Take(10);
     }
 
 }
