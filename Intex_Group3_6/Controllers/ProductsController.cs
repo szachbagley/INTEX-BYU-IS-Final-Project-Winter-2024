@@ -1,4 +1,5 @@
 ﻿using Intex_Group3_6.Models;
+using Intex_Group3_6.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Intex_Group3_6.Controllers
@@ -14,9 +15,19 @@ namespace Intex_Group3_6.Controllers
 
         public IActionResult Products()
         {
-            var productData = _repo.Products;
+            var productData = _repo.Products
+                .OrderBy(x => x.productName)
+                .Take(8);
 
             return View(productData);
+        }
+
+        [HttpGet]
+        public IActionResult ProductDetail(string productName)
+        {
+            ProductDetailViewModel productDetail = _repo.GetProductDetail(productName);
+
+            return View("ProductDetail", productDetail);
         }
     }
 }
