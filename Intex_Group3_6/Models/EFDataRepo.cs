@@ -27,4 +27,6 @@ public class EFDataRepo : IDataRepo
         return query.ToList();
     }
 
+    public IQueryable<Product> Products => _context.Products;
+
 }
