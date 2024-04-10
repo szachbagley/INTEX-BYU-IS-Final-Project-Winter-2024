@@ -6,7 +6,7 @@
 }
 
 @model IQueryable<Product>
-<div class="container-fluid">
+<div class="container-fluid mb-20">
     <div class="row"><h1>Products</h1></div>
     <div class="row">
         <div class="col-3">
@@ -16,15 +16,29 @@
         <div class="col-9">
             @for (int i = 0; i < (Model.Count() - 3); i += 3)
             {
+                int j = i + 1;
+                int k = i + 2;
                 <div class="row">
-                    <div class="col border-1 m-2">
+                    <div class="col m-2 border border-2 p-1 w-100 h-100">
                         <img src="@productList[i].imgLink" class="small w-100" />
                         <h2>@productList[i].productName</h2>
-                        <h2 class="fw-bold">@productList[i].price</h2>
+                        <h2 class="fw-bold">$@productList[i].price</h2>
+                        <a class="btn btn-primary rounded-3"><h2>Add To Cart</h2></a>
                     </div>
-                    
-                    <img src="@productList[i + 1].imgLink" class="col small" />
-                    <img src="@productList[i + 2].imgLink" class="col small" />
+                    <div class="col m-2 border border-2 p-1 w-100 h-100">
+                        <img src="@productList[j].imgLink" class="small w-100" />
+                        <h2>@productList[j].productName</h2>
+                        <h2 class="fw-bold">$@productList[j].price</h2>
+                        <a class="btn btn-primary rounded-3"><h2>Add To Cart</h2></a>
+
+                    </div>
+                    <div class="col m-2 border border-2 p-1 w-100 h-100">
+                        <img src="@productList[k].imgLink" class="small w-100" />
+                        <h2>@productList[k].productName</h2>
+                        <h2 class="fw-bold">$@productList[k].price</h2>
+                        <a class="btn btn-primary rounded-3"><h2>Add To Cart</h2></a>
+                    </div>
+                  
                 </div>
             }
             <div class="row">
@@ -32,7 +46,13 @@
                 {
                     for (int i = 0; i < (Model.Count() % 3); i++)
                     {
-                        <img src="@productList[(Model.Count() - 1) + i].imgLink" class="col-4 small" />
+                        int j = (Model.Count() - 1) + i;
+                        <div class="col-4 m-2 border border-2 p-1 h-100">
+                            <img src="@productList[j].imgLink" class="small w-100" />
+                            <h2>@productList[j].productName</h2>
+                            <h2 class="fw-bold">$@productList[j].price</h2>
+                            <a class="btn btn-primary rounded-3"><h2>Add To Cart</h2></a>
+                        </div>
                     }
                 }
             </div>
