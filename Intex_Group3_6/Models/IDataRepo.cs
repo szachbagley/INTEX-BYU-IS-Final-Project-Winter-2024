@@ -1,6 +1,12 @@
-namespace Intex_Group3_6.Models;
+using System.Collections.Generic;
+using System.Linq;
 
-public interface IDataRepo
+namespace Intex_Group3_6.Models
 {
+    public interface IDataRepo
+    {
+        IEnumerable<AvgRating> AvgRatings { get; }
 
+        public IEnumerable<RatedProducts> GetRatingsWithPictures();
+    }
 }
