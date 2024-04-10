@@ -2,12 +2,13 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model IEnumerable<RatedProducts>
 
 <div class="container">
     <div class="row">
         <!-- Left column for the black rectangle -->
         <div class="col-md-6 bg-black d-flex align-items-center justify-content-center text-white position-relative">
-            <h1>Aurora's Lego Shop</h1>
+            <h1 class="text-white">Aurora's Lego Shop</h1>
             <!-- White rectangle with curved edges -->
             <div class="white-rectangle">
                 <p class="text-center mb-0 small" style="color: black;">See featured products</p>
@@ -35,9 +36,36 @@
     <p class="mb-0 big-hey">Hey!</p>
     <p class="mb-0 personalized-message">For a more personalized experience, log in or create an account!</p>
     </div>
+    
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Recommended Products</h2>
+            <div class="recommended-products-container d-flex overflow-auto">
+                @foreach (var product in Model)
+                {
+                    <div class="recommended-product" style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                        <div class="card">
+                            <img src="@product.imgLink" class="card-img-top" alt="@product.productName">
+                            <div class="card-body">
+                                <h5 class="card-title">@product.productName</h5>
+                                <p class="card-text">Price: $@product.price</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <style>
+
     .bg-black {
         background-color: black;
     }
@@ -96,6 +124,6 @@
             max-width: 100%;
         }
 
-        
+       
 </style>
 

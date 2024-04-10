@@ -12,4 +12,5 @@ public class User
     public required string country { get; set; }
     public required string gender { get; set; }
     public required int age { get; set; }
+    public string? email { get; set; }
 }

@@ -15,7 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 var connectionString2 = builder.Configuration.GetConnectionString("SecondConnection") ??
                        throw new InvalidOperationException("Connection string 'SecondConnection' not found.");
 builder.Services.AddDbContext<DataContext>(options =>
-    options.UseSqlite(connectionString2));
+    options.UseSqlServer(connectionString2));
     //options.UseSqlServer(connectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();

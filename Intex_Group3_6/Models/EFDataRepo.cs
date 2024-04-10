@@ -9,34 +9,37 @@ public class EFDataRepo : IDataRepo
     { 
         _context = temp;
     }
+    
+    public void AddUser(User user) // Use this to add a user to the database
+    {
+        _context.Users.Add(user);
+    }
+    
+    public void SaveChanges() // Use this to save any changes to the database
+    {
+        _context.SaveChanges();
+    }
 
-    // public IQueryable<AdminOrdersViewModel> GetOrders(int pageNum)
-    // {
-    //     var fraudulentOrders = _context.Orders
-    //         .Where(o => o.fraud == true)
-    //         .Join(_context.Users,
-    //             order => order.userId,
-    //             user => user.userId,
-    //             (order, user) => new UserOrders { Orders = order, Users = user })
-    //         .AsQueryable();
-    //
-    //     // Assuming you have logic to calculate pagination info, like total items etc.
-    //     var paginationInfo = new PaginationInfo
-    //     {
-    //         // Populate your pagination info here
-    //         TotalItems = _context.Orders.Count(),
-    //         ItemsPerPage = 100,
-    //         CurrentPage = pageNum
-    //     };
-    //
-    //     var adminOrdersViewModel = new AdminOrdersViewModel
-    //     {
-    //         UserOrders = fraudulentOrders,
-    //         PaginationInfo = paginationInfo
-    //     };
-    //
-    //     return new[] { adminOrdersViewModel }.AsQueryable(); // You can use AsQueryable to convert the array to IQueryable
-    // }
+    public IEnumerable<AvgRating> AvgRatings => _context.AvgRatings;
+
+    public IEnumerable<RatedProducts> GetRatingsWithPictures()
+    {
+        var query = (from rating in _context.AvgRatings
+                         join product in _context.Products on rating.productId equals product.productId
+                         select new RatedProducts
+                         {
+                             productId = product.productId,
+                             productName = product.productName,
+                             imgLink = product.imgLink,
+                             price = product.price,
+                             avgRating = rating.avgRating
+
+                         }).Take(9);
+
+
+        return query.ToList();
+    }
+
     public AdminOrdersViewModel GetOrders(int pageNum)
     {
         int pageSize = 100; // Or whatever your page size should be
@@ -64,5 +67,8 @@ public class EFDataRepo : IDataRepo
         return model;
     }
 
+
+
+    public IQueryable<Product> Products => _context.Products;
 
 }
