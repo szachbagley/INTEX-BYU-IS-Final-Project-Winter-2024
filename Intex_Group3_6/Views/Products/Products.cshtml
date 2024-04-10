@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var productList = Model.ToList();
+}
+
+@model IQueryable<Product>
+<div class="container-fluid">
+    <div class="row"><h1>Products</h1></div>
+    <div class="row">
+        <div class="col-3">
+
+            filters go here
+        </div>
+        <div class="col-9">
+            @for (int i = 0; i < (Model.Count() - 3); i += 3)
+            {
+                <div class="row">
+                    <div class="col border-1 m-2">
+                        <img src="@productList[i].imgLink" class="small w-100" />
+                        <h2>@productList[i].productName</h2>
+                        <h2 class="fw-bold">@productList[i].price</h2>
+                    </div>
+                    
+                    <img src="@productList[i + 1].imgLink" class="col small" />
+                    <img src="@productList[i + 2].imgLink" class="col small" />
+                </div>
+            }
+            <div class="row">
+                @if ((Model.Count() % 3) > 0)
+                {
+                    for (int i = 0; i < (Model.Count() % 3); i++)
+                    {
+                        <img src="@productList[(Model.Count() - 1) + i].imgLink" class="col-4 small" />
+                    }
+                }
+            </div>
+            
+        </div>
+    </div>
+
+</div>

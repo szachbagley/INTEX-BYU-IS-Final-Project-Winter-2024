@@ -8,4 +8,6 @@ public class EFDataRepo : IDataRepo
         _context = temp;
     }
 
+    public IQueryable<Product> Products => _context.Products;
+
 }
