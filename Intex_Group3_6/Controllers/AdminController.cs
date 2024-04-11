@@ -92,7 +92,7 @@ public class AdminController : Controller
     [HttpGet]
     public IActionResult AddProduct()
     {
-        return View();
+        return View("AddProduct", new Product());
     }
 
     [HttpPost]
