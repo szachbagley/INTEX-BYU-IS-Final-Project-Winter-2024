@@ -25,7 +25,7 @@ namespace Intex_Group3_6.Pages
 
 
 
-        public async Task OnGetAsync(string returnUrl)
+        public async Task<IActionResult> OnGetAsync(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
             Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
@@ -34,7 +34,12 @@ namespace Intex_Group3_6.Pages
             {
                 LoggedInUser = _dataRepo.GetUserByEmail(identityUser.Email);
             }
-            
+            if (LoggedInUser != null)
+            {
+                return Page();
+            }
+            else { return new ViewResult { ViewName = "PleaseLogIn" }; }
+
         }
 
         public async Task<IActionResult> OnPostAsync(int productId, string returnUrl)
