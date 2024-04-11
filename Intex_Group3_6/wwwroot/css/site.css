@@ -31,6 +31,13 @@ h1 {
   color: #333;
 }
 
+a {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Inherits color from parent element */
+    background-color: transparent; /* Removes background color */
+}
+
+
 section {
   background-color: #fff;
   padding: 20px;

@@ -5,4 +5,115 @@
 }
 @model ProductDetailViewModel
 
-<h1>@Model.description</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-7 border-top border-end border-bottom border-2 p-3 d-flex justify-content-center">
+            <img src="@Model.imgLink" style="max-width: 85%;"/>
+        </div>
+        <div class="col-5 border-top border-bottom border-2 p-3">
+            <h1>@Model.productName</h1>
+            <h2 class="fw-bold">$@Model.price</h2>
+            <form>
+                <buttom type="submit" class="btn btn-primary">
+                    <h2>Add to Cart</h2>
+                </buttom>
+            </form>
+        </div>
+    </div>
+    <div class="row top">
+        <div class="col-3"
+    </div>
+</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>More Like This</h2>
+                <div class="recommended-products-container d-flex overflow-auto">
+                     @*This is where the repeats start*@
+                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                            <a asp-controller="Products" asp-action="ProductDetail" asp-route-productName="@Model.rec1Name">
+                            <div class="card">
+                                <img src="@Model.rec1Img" class="card-img-top" alt="@Model.rec1Name">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.rec1Name</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                            <div class="card">
+                                <img src="@Model.rec2Img" class="card-img-top" alt="@Model.rec2Name">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.rec2Name</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                            <div class="card">
+                                <img src="@Model.rec3Img" class="card-img-top" alt="@Model.rec3Name">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.rec3Name</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                            <div class="card">
+                                <img src="@Model.rec4Img" class="card-img-top" alt="@Model.rec4Name">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.rec4Name</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                            <div class="card">
+                                <img src="@Model.rec5Img" class="card-img-top" alt="@Model.rec5Name">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.rec5Name</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                            <div class="card">
+                                <img src="@Model.rec6Img" class="card-img-top" alt="@Model.rec6Name">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.rec6Name</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                            <div class="card">
+                                <img src="@Model.rec7Img" class="card-img-top" alt="@Model.rec7Name">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.rec7Name</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                            <div class="card">
+                                <img src="@Model.rec8Img" class="card-img-top" alt="@Model.rec8Name">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.rec8Name</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                            <div class="card">
+                                <img src="@Model.rec9Img" class="card-img-top" alt="@Model.rec9Name">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.rec9Name</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                            <div class="card">
+                                <img src="@Model.rec10Img" class="card-img-top" alt="@Model.rec10Name">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.rec10Name</h5>
+                                </div>
+                            </div>
+                        </div>
+                    @*This is where the repeats end*@
+                </div>
+            </div>
+        </div>
+    </div>
+

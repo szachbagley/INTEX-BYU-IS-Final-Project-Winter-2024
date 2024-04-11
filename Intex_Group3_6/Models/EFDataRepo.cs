@@ -75,7 +75,7 @@ public class EFDataRepo : IDataRepo
                          rec7Name = itemrec.rec7,
                          rec8Name = itemrec.rec8,
                          rec9Name = itemrec.rec9,
-                         rec10Name = itemrec.rec10,
+                         rec10Name = itemrec.rec10
                      }).SingleOrDefault();
 
             var rec1 = (from product in _context.Products
@@ -197,7 +197,14 @@ public class EFDataRepo : IDataRepo
             rec7Id = rec7.recId,
             rec7Img = rec7.recImg,
             rec8Name = rec8.recName,
-            rec8Id = rec8.recId
+            rec8Id = rec8.recId,
+            rec8Img = rec8.recImg,
+            rec9Name = rec9.recName,
+            rec9Id = rec9.recId,
+            rec9Img = rec9.recImg,
+            rec10Name = rec10.recName,
+            rec10Id = rec10.recId,
+            rec10Img = rec10.recImg
         };
 
         return model;
