@@ -3,22 +3,30 @@ using Microsoft.AspNetCore.Mvc;
 using Intex_Group3_6.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.AccessControl;
+
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
+
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Intex_Group3_6.Controllers;
 
 public class HomeController : Controller
 {
     private IDataRepo _repo;
-    private readonly InferenceSession _session;
-    // private readonly ILogger<HomeController> _logger;
 
-    public HomeController(IDataRepo repo, ILogger<HomeController> logger)
+    private UserManager<IdentityUser> _userManager;
+    private readonly InferenceSession _session;
+
+    public HomeController(IDataRepo repo, UserManager<IdentityUser> userManager)
     {
         _repo = repo;
+        _userManager = userManager;
         _session = new InferenceSession("fraud_model3.onnx");
     }
+
+
 
     public IActionResult Index()
     {
@@ -222,5 +230,23 @@ public class HomeController : Controller
             _session?.Dispose();
         }
         base.Dispose(disposing);
+    }
+}
+
+    public IActionResult OrderConfirmation()
+    {
+        return View();
+    }
+
+    public async Task<IActionResult> UserDetailTestAsync()
+    {
+        var identityUser = await _userManager.GetUserAsync(User);
+        if (identityUser != null)
+        {
+            var user = _repo.GetUserByEmail(identityUser.Email);
+            return View(user);
+        }
+        else { return View("Index"); }
+
     }
 }

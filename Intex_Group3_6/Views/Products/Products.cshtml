@@ -8,64 +8,34 @@
 @model IQueryable<Product>
 <div class="container-fluid mb-20">
     <div class="row">
-        <h1>Products</h1>
+        <div class="col-12">
+            <h1 class="text-center">Products</h1>
+        </div>
     </div>
     <div class="row">
-        <div class="col-3">
-            <div style="position: fixed;">
+        <div class="col-md-3">
+            <div class="position-fixed">
                 filters go here
             </div>
-            
-        </div>
-        <div class="col-9">
-            @for (int i = 0; i < (Model.Count()); i += 3)
+    </div>
+    <div class="col-md-9">
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+            @foreach (var product in productList)
             {
-                int j = i + 1;
-                int k = i + 2;
-                <div class="row">
-                    <div class="col-4 border border-2 p-1 h-100">
-                        <a asp-controller="Products" asp-action="ProductDetail" asp-route-productName="@productList[i].productName">
-                        
-                            <img src="@productList[i].imgLink" class="small w-100" />
-                            <p>@productList[i].productName</p>
-                            <p class="fw-bold">$@productList[i].price</p>
-                            <button class="btn btn-primary rounded-3"  ><p>Add To Cart</p></button>
-                        </a>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="@product.imgLink" class="card-img-top" alt="@product.productName">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.productName</h5>
+                            <p class="card-text fw-bold">$@product.price</p>
+                            <a href="@Url.Action("ProductDetail", "Products", new { productName = product.productName })" class="btn btn-primary">View Product</a>
+                        </div>
                     </div>
-                        
-                    @if (j < Model.Count())
-                    {
-                        
-                        <div class="col-4 border border-2 p-1 h-100">
-                            <a asp-controller="Products" asp-action="ProductDetail" asp-route-productName="@productList[j].productName">
-                                <img src="@productList[j].imgLink" class="small w-100" />
-                                <p>@productList[j].productName</p>
-                                <p class="fw-bold">$@productList[j].price</p>
-                                <button class="btn btn-primary btn-sm"><p>Add To Cart</p></button>
-                            
-                            </a>
-                        </div>
-                    }
-                    
-                    @if (k < Model.Count())
-                    {
-                        
-                        <div class="col-4 border border-2 p-1 h-100">
-                            <a asp-controller="Products" asp-action="ProductDetail" asp-route-productName="@productList[k].productName">
-                                <img src="@productList[k].imgLink" class="small w-100" />
-                                <p>@productList[k].productName</p>
-                                <p class="fw-bold">$@productList[k].price</p>
-                                <button class="btn btn-primary rounded-3"><p>Add To Cart</p></button>
-                            
-                            </a>
-                        </div>
-                    }
-                    
-                  
                 </div>
             }
-            
         </div>
     </div>
-
 </div>
+</div>
+
+

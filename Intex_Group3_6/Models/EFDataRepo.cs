@@ -1,4 +1,5 @@
 using Intex_Group3_6.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Intex_Group3_6.Models;
@@ -6,6 +7,8 @@ namespace Intex_Group3_6.Models;
 public class EFDataRepo : IDataRepo
 {
     private DataContext _context;
+    private UserManager<IdentityUser> _userManager;
+  
     public EFDataRepo(DataContext temp) 
     { 
         _context = temp;
@@ -305,5 +308,34 @@ public class EFDataRepo : IDataRepo
         {
             _context.Products.Remove(productToDelete);
         }
+    }
+    
+    public Order GetOrderById(int transactionId)
+    {
+        return _context.Orders.FirstOrDefault(o => o.transactionId == transactionId);
+    }
+    
+    public void DeleteOrder(Order order)
+    {
+        var orderToDelete = _context.Orders.FirstOrDefault(o => o.transactionId == order.transactionId);
+        var lineItemsToDelete = _context.LineItems.Where(line => line.TransactionId == order.transactionId);
+        if (orderToDelete != null)
+        {
+            _context.Orders.Remove(orderToDelete);
+        }
+        if (lineItemsToDelete != null)
+        {
+            _context.LineItems.RemoveRange(lineItemsToDelete);
+        }
+    }
+
+    public void AddProduct(Product product)
+    {
+        _context.Products.Add(product);
+    }
+
+    public User GetUserByEmail(string email)
+    {
+        return _context.Users.FirstOrDefault(p => p.email == email);
     }
 }

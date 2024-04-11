@@ -23,23 +23,23 @@ public class AdminController : Controller
 
         return View(model);
     }
-    
+
     public IActionResult AdminUsers(int pageNum = 1)
     {
         var model = _repo.GetUsers(pageNum);
 
         return View(model);
     }
-    
+
     public IActionResult AdminProducts(int pageNum = 1, int pageSize = 10)
     {
         var model = _repo.GetProducts(pageNum, pageSize);
 
         model.PaginationInfo.ItemsPerPage = pageSize;
         model.PageSizes = new SelectList(new[] { "10", "20", "50" }
-                .Select(x => new SelectListItem { Value = x, Text = x}),
-    "Value", "Text", pageSize.ToString());
-        
+                .Select(x => new SelectListItem { Value = x, Text = x }),
+            "Value", "Text", pageSize.ToString());
+
         return View(model);
     }
 
@@ -67,11 +67,40 @@ public class AdminController : Controller
         var product = _repo.GetProductById(id);
         return View(product);
     }
-    
+
     [HttpPost]
     public IActionResult DeleteProduct(Product product)
     {
         _repo.DeleteProduct(product);
+        _repo.SaveChanges();
+        return RedirectToAction("AdminProducts");
+    }
+
+    [HttpGet]
+    public IActionResult DeleteOrder(int id)
+    {
+        var order = _repo.GetOrderById(id);
+        return View(order);
+    }
+
+    [HttpPost]
+    public IActionResult DeleteOrder(Order order)
+    {
+        _repo.DeleteOrder(order);
+        _repo.SaveChanges();
+        return RedirectToAction("AdminOrders");
+    }
+
+    [HttpGet]
+    public IActionResult AddProduct()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult AddProduct(Product product)
+    {
+        _repo.AddProduct(product);
         _repo.SaveChanges();
         return RedirectToAction("AdminProducts");
     }
