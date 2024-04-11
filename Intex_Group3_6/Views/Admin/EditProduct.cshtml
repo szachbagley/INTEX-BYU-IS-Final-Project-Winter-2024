@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Edit Products";
+}
+@model Product
+
+<div class="col-4 mx-auto">
+    <section>
+        <form method="post" asp-controller="Admin" asp-action="EditProduct">
+            <h2>Edit Product</h2>
+            <hr />
+            <input type="hidden" asp-for="productId"/>
+            <label asp-for="productName" class="form-label">Product Name</label>
+            <input asp-for="productName" class="form-control" />
+            <br/>
+            <label asp-for="year" class="form-label">Year</label>
+            <input asp-for="year" class="form-control" />
+            <br/>            
+            <label asp-for="numParts" class="form-label">Parts</label>
+            <input asp-for="numParts" class="form-control" />
+            <br/>        
+            <label asp-for="price" class="form-label">Price</label>
+            <input asp-for="price" class="form-control" />
+            <br/>         
+            <label asp-for="imgLink" class="form-label">Image Link</label>
+            <input asp-for="imgLink" class="form-control" />
+            <br/>            
+            <label asp-for="primaryColor" class="form-label">Primary Color</label>
+            <input asp-for="primaryColor" class="form-control" />
+            <br/>            
+            <label asp-for="secondaryColor" class="form-label">Secondary Color</label>
+            <input asp-for="secondaryColor" class="form-control" />
+            <br/>            
+            <label asp-for="description" class="form-label">Description</label>
+            <textarea type="text" asp-for="description" class="form-control"></textarea>
+            <br/>            
+            <label asp-for="category1" class="form-label">Category 1</label>
+            <input asp-for="category1" class="form-control" />
+            <br/>            
+            <label asp-for="category2" class="form-label">Category 2</label>
+            <input asp-for="category2" class="form-control" />
+            <br/>            
+            <label asp-for="category3" class="form-label">Category 3</label>
+            <input asp-for="category3" class="form-control" />
+            <br/>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a class="btn btn-warning" asp-controller="Admin" asp-action="AdminProducts">Cancel</a>
+        </form>
+    </section>
+</div>

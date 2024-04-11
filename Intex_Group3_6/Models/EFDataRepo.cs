@@ -1,4 +1,5 @@
 using Intex_Group3_6.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Intex_Group3_6.Models;
 
@@ -280,4 +281,22 @@ public class EFDataRepo : IDataRepo
 
     public IQueryable<Product> Products => _context.Products;
 
+    public Product GetProductById(int productId)
+    {
+        return _context.Products.FirstOrDefault(p => p.productId == productId);
+    }
+    
+    public void UpdateProduct(Product product) // Use this to edit products in the database
+    {
+        _context.Products.Update(product);
+    }
+
+    public void DeleteProduct(Product product)
+    {
+        var productToDelete = _context.Products.FirstOrDefault(p => p.productId == product.productId);
+        if (productToDelete != null)
+        {
+            _context.Products.Remove(productToDelete);
+        }
+    }
 }
