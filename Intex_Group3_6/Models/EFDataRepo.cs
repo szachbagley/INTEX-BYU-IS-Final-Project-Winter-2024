@@ -259,14 +259,14 @@ public class EFDataRepo : IDataRepo
     public AdminProductsViewModel GetProducts(int pageNum, int pageSize)
     {
         var query = _context.Products;
-
-
-        // Here you would add pagination logic to the query
-        var pagedOrders = query.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+        var pagedProducts = query
+            .Skip((pageNum - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
 
         var model = new AdminProductsViewModel
         {
-            Products = pagedOrders.AsQueryable(),
+            Products = pagedProducts.AsQueryable(),
             PaginationInfo = new PaginationInfo
             {
                 // Assign the properties of PaginationInfo accordingly
