@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="row top">
-        <div class="col-3"
+        <div class="col-3"></div>
     </div>
 </div>
     <div class="container">
@@ -32,12 +32,13 @@
                      @*This is where the repeats start*@
                         <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
                             <a asp-controller="Products" asp-action="ProductDetail" asp-route-productName="@Model.rec1Name">
-                            <div class="card">
-                                <img src="@Model.rec1Img" class="card-img-top" alt="@Model.rec1Name">
-                                <div class="card-body">
-                                    <h5 class="card-title">@Model.rec1Name</h5>
+                                <div class="card">
+                                    <img src="@Model.rec1Img" class="card-img-top" alt="@Model.rec1Name">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Model.rec1Name</h5>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
                             <div class="card">
