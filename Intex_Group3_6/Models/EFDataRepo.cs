@@ -1,4 +1,5 @@
 using Intex_Group3_6.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Intex_Group3_6.Models;
@@ -6,6 +7,8 @@ namespace Intex_Group3_6.Models;
 public class EFDataRepo : IDataRepo
 {
     private DataContext _context;
+    private UserManager<IdentityUser> _userManager;
+  
     public EFDataRepo(DataContext temp) 
     { 
         _context = temp;
@@ -305,5 +308,10 @@ public class EFDataRepo : IDataRepo
         {
             _context.Products.Remove(productToDelete);
         }
+    }
+
+    public User GetUserByEmail(string email)
+    {
+        return _context.Users.FirstOrDefault(p => p.email == email);
     }
 }
