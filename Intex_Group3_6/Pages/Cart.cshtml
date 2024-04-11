@@ -47,6 +47,7 @@
                 <p>Order Total: @Model.Cart?.CalculateTotal().ToString("c")</p>
                 <hr>
             <form method="post" asp-page-handler="Checkout">
+                <h2>@Model.LoggedInUser?.email</h2>
                 <div class="form-group">
                     <label for="country">Country:</label>
                     <input type="text" class="form-control" id="country" name="country">
