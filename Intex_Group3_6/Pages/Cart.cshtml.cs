@@ -21,6 +21,10 @@ namespace Intex_Group3_6.Pages
 
         public User? LoggedInUser { get; set; }
 
+        public Order? Order { get; set; }
+
+        public List<Cart.CartLine> CartLines { get; set; }
+
         public string ReturnUrl { get; set; } = "/";
 
 
@@ -64,6 +68,23 @@ namespace Intex_Group3_6.Pages
                 return RedirectToPage(new { returnUrl = returnUrl });
             }
             else { return new ViewResult { ViewName = "PleaseLogIn" }; }
+        }
+
+        public IActionResult OnPostCheckout(Order order, List<Cart.CartLine> cartLines)
+        {
+            _dataRepo.AddOrder(order);
+            for (int i = 0; i < cartLines.Count; i++)
+            {
+                LineItem item = new LineItem
+                {
+                    ProductId = cartLines[i].Product.productId,
+                    quantity = cartLines[i].Quantity,
+                    TransactionId = order.transactionId
+                };
+                _dataRepo.AddLineItem(item);
+            }
+            _dataRepo.SaveChanges();
+            return new ViewResult { ViewName = "OrderConfirmation" };
         }
     }
 }

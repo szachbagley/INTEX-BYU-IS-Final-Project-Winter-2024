@@ -1,5 +1,6 @@
 ﻿using Microsoft.Build.Evaluation;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.ComponentModel.DataAnnotations;
 
 namespace Intex_Group3_6.Models
 {
@@ -40,7 +41,13 @@ namespace Intex_Group3_6.Models
 
             public Product Product { get; set; }
 
-            public float Quantity { get; set; }
+            public int Quantity { get; set; }
+
+            //[Key]
+            //public int TransactionId { get; set; }
+            //public int ProductId { get; set; }
+            //public required int quantity { get; set; }
+            //public int? rating { get; set; }
         }
     }
 }
