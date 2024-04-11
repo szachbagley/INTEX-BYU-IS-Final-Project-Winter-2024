@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Intex_Group3_6.Models;
 
-public class Order : IEnumerable
+public class Order 
 {
     [Key]
     public required int transactionId { get; set; }
@@ -19,8 +19,4 @@ public class Order : IEnumerable
     public string? bank { get; set; }
     public string? typeOfCard { get; set; }
     public string? fraud { get; set; }
-    public IEnumerator GetEnumerator()
-    {
-        throw new NotImplementedException();
-    }
 }

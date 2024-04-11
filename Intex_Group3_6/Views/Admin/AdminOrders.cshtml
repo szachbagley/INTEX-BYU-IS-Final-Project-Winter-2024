@@ -28,7 +28,7 @@
             <td>@userOrder.Orders.time</td>
             <td>@userOrder.Orders.fraud</td>
             <td>
-                <form method="post" asp-controller="Admin" asp-action="AdminOrders" asp-route-id="@userOrder.Orders.transactionId">
+                <form method="get" asp-controller="Admin" asp-action="DeleteOrder" asp-route-id="@userOrder.Orders.transactionId">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>

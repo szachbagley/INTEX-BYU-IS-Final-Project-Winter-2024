@@ -309,6 +309,30 @@ public class EFDataRepo : IDataRepo
             _context.Products.Remove(productToDelete);
         }
     }
+    
+    public Order GetOrderById(int transactionId)
+    {
+        return _context.Orders.FirstOrDefault(o => o.transactionId == transactionId);
+    }
+    
+    public void DeleteOrder(Order order)
+    {
+        var orderToDelete = _context.Orders.FirstOrDefault(o => o.transactionId == order.transactionId);
+        var lineItemsToDelete = _context.LineItems.Where(line => line.TransactionId == order.transactionId);
+        if (orderToDelete != null)
+        {
+            _context.Orders.Remove(orderToDelete);
+        }
+        if (lineItemsToDelete != null)
+        {
+            _context.LineItems.RemoveRange(lineItemsToDelete);
+        }
+    }
+
+    public void AddProduct(Product product)
+    {
+        _context.Products.Add(product);
+    }
 
     public User GetUserByEmail(string email)
     {

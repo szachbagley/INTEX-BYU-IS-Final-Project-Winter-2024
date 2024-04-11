@@ -27,7 +27,9 @@ namespace Intex_Group3_6.Models
         public Product GetProductById(int productId);
         void UpdateProduct(Product product);
         void DeleteProduct(Product product);
-
+        public Order GetOrderById(int transactionId);
+        public void DeleteOrder(Order order);
+        void AddProduct(Product product);
         public User GetUserByEmail(string email);
     }
 

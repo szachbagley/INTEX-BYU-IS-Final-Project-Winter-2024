@@ -1,24 +1,24 @@
 @{
-    ViewData["Title"] = "Delete Product";
+    ViewData["Title"] = "Delete Order";
 }
-@model Product
+@model Order
 
 <div class="col-6 mx-auto">
     <section>
         <h2 class="text-center">Are you sure you want to delete</h2>
-        <h2 class="fw-bold text-center">"@Model.productName"?</h2>
+        <h2 class="fw-bold text-center">"@Model.transactionId"?</h2>
         <br/>
         <br/>
         <div class="container-fluid">
             <div class="row mx-auto">
                 <div class="col text-end">
-                    <form method="post" asp-controller="Admin" asp-action="DeleteProduct" class="d-inline">
-                        <input type="hidden" asp-for="productId" />
+                    <form method="post" asp-controller="Admin" asp-action="DeleteOrder" class="d-inline">
+                        <input type="hidden" asp-for="transactionId" />
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </div>
                 <div class="col">
-                    <a class="btn btn-warning ms-2" asp-controller="Admin" asp-action="AdminProducts">Cancel</a>
+                    <a class="btn btn-warning ms-2" asp-controller="Admin" asp-action="AdminOrders">Cancel</a>
                 </div>
             </div>
         </div>
