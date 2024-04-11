@@ -41,5 +41,36 @@ public class AdminController : Controller
         return View(model);
     }
 
+
     public IEnumerable<SelectListItem> PageSizes { get; set; }
+
+    [HttpGet]
+    public IActionResult EditProduct(int id)
+    {
+        var product = _repo.GetProductById(id);
+        return View(product);
+    }
+
+    [HttpPost]
+    public IActionResult EditProduct(Product product)
+    {
+        _repo.UpdateProduct(product);
+        _repo.SaveChanges();
+        return RedirectToAction("AdminProducts");
+    }
+
+    [HttpGet]
+    public IActionResult DeleteProduct(int id)
+    {
+        var product = _repo.GetProductById(id);
+        return View(product);
+    }
+    
+    [HttpPost]
+    public IActionResult DeleteProduct(Product product)
+    {
+        _repo.DeleteProduct(product);
+        _repo.SaveChanges();
+        return RedirectToAction("AdminProducts");
+    }
 }

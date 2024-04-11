@@ -12,9 +12,9 @@
         <th>Product Name</th>
         <th>Year</th>
         <th>Price</th>
-        <th>Gender</th>
-        <th>Age</th>
-        <th>Role</th>
+        <th>Pieces</th>
+        <th></th>
+        <th></th> <!-- Empty header for the Edit button column -->
         <th></th> <!-- Empty header for the Delete button column -->
     </tr>
     </thead>
@@ -27,12 +27,12 @@
             <td>@product.numParts</td>
             <td></td>
             <td>
-                <form method="post" asp-controller="Admin" asp-action="AdminProducts" asp-route-id="@product.productId">
+                <form method="get" asp-controller="Admin" asp-action="EditProduct" asp-route-id="@product.productId">
                     <button type="submit" class="btn btn-primary">Edit</button>
                 </form>
             </td>
             <td>
-                <form method="post" asp-controller="Admin" asp-action="AdminProducts" asp-route-id="@product.productId">
+                <form method="get" asp-controller="Admin" asp-action="DeleteProduct" asp-route-id="@product.productId">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>

@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Edit Products";
+}
+@model Product
+
+<div class="col-8 mx-auto">
+    <section>
+        <h2>Are you sure you want to delete</h2>
+        <span class="fw-bold">"@Model.productName"</span>
+        <br/>
+        <form method="post" asp-controller="Admin" asp-action="DeleteProduct">
+            <input asp-for="productId"/>
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a class="btn btn-warning" asp-controller="Admin" asp-action="AdminProducts">Cancel</a>
+    </section>
+</div>
