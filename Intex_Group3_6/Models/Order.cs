@@ -1,9 +1,8 @@
-using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
 namespace Intex_Group3_6.Models;
 
-public class Order 
+public class Order
 {
     [Key]
     public required int transactionId { get; set; }

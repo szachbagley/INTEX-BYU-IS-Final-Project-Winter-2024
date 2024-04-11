@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Intex_Group3_6.Data;
 using Intex_Group3_6.Models;
+using Microsoft.ML.OnnxRuntime;
+using Microsoft.ML.OnnxRuntime.Tensors;
 
 var builder = WebApplication.CreateBuilder(args);
 
