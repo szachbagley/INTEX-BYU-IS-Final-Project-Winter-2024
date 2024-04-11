@@ -34,4 +34,34 @@ public class AdminController : Controller
         ViewBag.PageSize = pageSize;
         return View(model);
     }
+
+    [HttpGet]
+    public IActionResult EditProduct(int id)
+    {
+        var product = _repo.GetProductById(id);
+        return View(product);
+    }
+
+    [HttpPost]
+    public IActionResult EditProduct(Product product)
+    {
+        _repo.UpdateProduct(product);
+        _repo.SaveChanges();
+        return RedirectToAction("AdminProducts");
+    }
+
+    [HttpGet]
+    public IActionResult DeleteProduct(int id)
+    {
+        var product = _repo.GetProductById(id);
+        return View(product);
+    }
+    
+    [HttpPost]
+    public IActionResult DeleteProduct(Product product)
+    {
+        _repo.DeleteProduct(product);
+        _repo.SaveChanges();
+        return RedirectToAction("AdminProducts");
+    }
 }

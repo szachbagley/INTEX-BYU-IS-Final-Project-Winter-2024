@@ -24,6 +24,9 @@ namespace Intex_Group3_6.Models
 
         public IEnumerable<RatedProducts> GetRatingsWithPictures();
         public AdminUsersViewModel GetUsers(int pageNum);
+        public Product GetProductById(int productId);
+        void UpdateProduct(Product product);
+        void DeleteProduct(Product product);
     }
 
 }
