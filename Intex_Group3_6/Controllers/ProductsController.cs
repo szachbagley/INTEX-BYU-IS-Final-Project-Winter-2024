@@ -1,6 +1,8 @@
 ﻿using Intex_Group3_6.Models;
 using Intex_Group3_6.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.ML.OnnxRuntime;
+using Microsoft.ML.OnnxRuntime.Tensors;  
 
 namespace Intex_Group3_6.Controllers
 {
