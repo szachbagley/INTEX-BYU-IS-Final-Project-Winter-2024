@@ -47,9 +47,9 @@
                 <p>Order Total: @Model.Cart?.CalculateTotal().ToString("c")</p>
                 <hr>
 
-            <form method="post" asp-contoller="Home" asp-action="OrderConfirmation">
+            <form method="post" >
 
-            
+                @* asp-contoller="Home" asp-action="OrderConfirmation"  (THIS IS FOR THE ABOVE FORM TAG)*@
                 <h2>@Model.LoggedInUser?.email</h2>
 
                 <div class="form-group">
