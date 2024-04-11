@@ -43,6 +43,9 @@ public class HomeController : Controller
     {
         return View();
         
+
+    }
+
     public async Task<IActionResult> UserDetailTestAsync()
     {
         var identityUser = await _userManager.GetUserAsync(User);
@@ -52,9 +55,6 @@ public class HomeController : Controller
             return View(user);
         }
         else { return View("Index"); }
-        
-
-        
 
     }
 }
