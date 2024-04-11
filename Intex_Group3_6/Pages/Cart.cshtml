@@ -47,7 +47,7 @@
                 <p>Order Total: @Model.Cart?.CalculateTotal().ToString("c")</p>
                 <hr>
 
-            <form method="post" asp-contoller="Home" asp-action="checkout">
+            <form method="post" asp-contoller="Home" asp-action="OrderConfirmation">
 
             
                 <h2>@Model.LoggedInUser?.email</h2>
