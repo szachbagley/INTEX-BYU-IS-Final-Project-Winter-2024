@@ -325,4 +325,9 @@ public class EFDataRepo : IDataRepo
             _context.LineItems.RemoveRange(lineItemsToDelete);
         }
     }
+
+    public void AddProduct(Product product)
+    {
+        _context.Products.Add(product);
+    }
 }

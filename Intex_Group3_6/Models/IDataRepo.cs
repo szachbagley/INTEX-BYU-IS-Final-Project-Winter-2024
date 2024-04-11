@@ -29,6 +29,7 @@ namespace Intex_Group3_6.Models
         void DeleteProduct(Product product);
         public Order GetOrderById(int transactionId);
         public void DeleteOrder(Order order);
+        void AddProduct(Product product);
     }
 
 }
