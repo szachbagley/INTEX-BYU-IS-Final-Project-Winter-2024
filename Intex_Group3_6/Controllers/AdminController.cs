@@ -73,4 +73,19 @@ public class AdminController : Controller
         _repo.SaveChanges();
         return RedirectToAction("AdminProducts");
     }
+    
+    [HttpGet]
+    public IActionResult DeleteOrder(int id)
+    {
+        var order = _repo.GetOrderById(id);
+        return View(order);
+    }
+    
+    [HttpPost]
+    public IActionResult DeleteOrder(Order order)
+    {
+        _repo.DeleteOrder(order);
+        _repo.SaveChanges();
+        return RedirectToAction("AdminOrders");
+    }
 }
