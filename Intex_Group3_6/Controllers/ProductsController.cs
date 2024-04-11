@@ -17,7 +17,7 @@ namespace Intex_Group3_6.Controllers
         {
             var productData = _repo.Products
                 .OrderBy(x => x.productName)
-                .Take(8);
+                .Take(9);
 
             return View(productData);
         }

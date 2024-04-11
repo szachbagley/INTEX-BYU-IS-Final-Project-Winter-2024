@@ -1,53 +1,77 @@
-﻿@*
+﻿@using Intex_Group3_6.Infrastructure
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-}
 @model ProductDetailViewModel
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-7 border-top border-end border-bottom border-2 p-3 d-flex justify-content-center">
-            <img src="@Model.imgLink" style="max-width: 85%;"/>
+        <div class="col-md-7 border border-2 p-3">
+            <img src="@Model.imgLink" class="img-fluid" alt="@Model.productName">
         </div>
-        <div class="col-5 border-top border-bottom border-2 p-3">
+        <div class="col-md-5 border border-2 p-3">
             <h1>@Model.productName</h1>
             <h2 class="fw-bold">$@Model.price</h2>
-            <form>
-                <buttom type="submit" class="btn btn-primary">
-                    <h2>Add to Cart</h2>
-                </buttom>
+            <form id="@Model.productId" method="post" asp-page="/Cart">
+                <input type="hidden" asp-for="productId" />
+                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                <button type="submit" class="btn btn-primary blue-curved-rectangle">
+                    <div class="row">
+                        <div class="col-3 spaceman-container">
+                            <img src="~/Orange-Spaceman.png" class="img-fluid spaceman" alt="Lego Spaceman">
+                        </div>
+                        <div class="col-9 d-flex align-items-center">
+                            <span class="btn-text">Add to Cart</span>
+                        </div>
+                    </div>
+                </button>
             </form>
         </div>
     </div>
-    <div class="row top">
-        <div class="col-3"></div>
+    <div class="row">
+        <div class="col-3">
+            <div class="row">
+                <h4>Year</h4>
+                <p>@Model.year</p>
+            </div>
+            <hr />
+            <div class="row">
+                <h4>Number of Parts</h4>
+                <p>@Model.numParts</p>
+            </div>
+        </div>
+        <div class="col-9">
+            <h4>Description</h4>
+            <p>@Model.description</p>
+        </div>
     </div>
+    <hr />
 </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>More Like This</h2>
-                <div class="recommended-products-container d-flex overflow-auto">
-                     @*This is where the repeats start*@
-                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
-                            <a asp-controller="Products" asp-action="ProductDetail" asp-route-productName="@Model.rec1Name">
-                                <div class="card">
-                                    <img src="@Model.rec1Img" class="card-img-top" alt="@Model.rec1Name">
-                                    <div class="card-body">
-                                        <h5 class="card-title">@Model.rec1Name</h5>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
-                            <div class="card">
-                                <img src="@Model.rec2Img" class="card-img-top" alt="@Model.rec2Name">
-                                <div class="card-body">
-                                    <h5 class="card-title">@Model.rec2Name</h5>
-                                </div>
+    
+    
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h2>More Like This</h2>
+            <div class="recommended-products-container d-flex flex-nowrap overflow-auto">
+                @*This is where the repeats start*@
+                <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                    <a asp-controller="Products" asp-action="ProductDetail" asp-route-productName="@Model.rec1Name">
+                        <div class="card">
+                            <img src="@Model.rec1Img" class="card-img-top" alt="@Model.rec1Name">
+                            <div class="card-body">
+                                <h5 class="card-title">@Model.rec1Name</h5>
                             </div>
                         </div>
+                    </a>
+                </div>
+                <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+                    <div class="card">
+                        <img src="@Model.rec2Img" class="card-img-top" alt="@Model.rec2Name">
+                        <div class="card-body">
+                            <h5 class="card-title">@Model.rec2Name</h5>
+                        </div>
+                    </div>
+                </div>
                         <div style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
                             <div class="card">
                                 <img src="@Model.rec3Img" class="card-img-top" alt="@Model.rec3Name">
@@ -118,3 +142,37 @@
         </div>
     </div>
 
+
+ <style>
+    .blue-curved-rectangle {
+        background-color: #83B2F8;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.spaceman-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spaceman {
+    max-width: 85%;
+    height: auto;
+}
+
+.btn-text {
+        font-size: 25px; /* Adjust the font size as needed */
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+</style>

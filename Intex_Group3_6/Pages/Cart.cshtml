@@ -46,8 +46,12 @@
                 <p>Cart: (@Model.Cart?.Lines.Sum(x => x.Quantity)) items</p>
                 <p>Order Total: @Model.Cart?.CalculateTotal().ToString("c")</p>
                 <hr>
-            <form method="post" asp-page-handler="Checkout">
+
+            <form method="post" asp-contoller="Home" asp-action="checkout">
+
+            
                 <h2>@Model.LoggedInUser?.email</h2>
+
                 <div class="form-group">
                     <label for="country">Country:</label>
                     <input type="text" class="form-control" id="country" name="country">

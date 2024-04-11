@@ -38,6 +38,11 @@ public class HomeController : Controller
     {
         return View();
     }
+
+    public IActionResult OrderConfirmation()
+    {
+        return View();
+        
     public async Task<IActionResult> UserDetailTestAsync()
     {
         var identityUser = await _userManager.GetUserAsync(User);
@@ -50,5 +55,6 @@ public class HomeController : Controller
         
 
         
+
     }
 }
