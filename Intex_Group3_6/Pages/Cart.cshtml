@@ -1,0 +1,75 @@
+﻿@page
+@model Intex_Group3_6.Pages.CartModel
+@{
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <h2 class="align-items-center d-flex">Your cart</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th class="text-right">Amount</th>
+            <th class="text-right">Subtotal</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var l in Model.Cart?.Lines ?? Enumerable.Empty<Cart.CartLine>())
+            {
+                <tr>
+                <td><img src="@l.Product.imgLink" style="max-width: 100px; max-height: 100px;" /></td>
+                    <td class="text-center">@l.Quantity</td>
+                    <td class="text-right">@l.Product.price</td>
+                <td class="text-right">@((@l.Quantity * @l.Product.price).ToString("c"))</td>
+                </tr>
+            }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">@Model.Cart?.CalculateTotal()</td>
+        </tr>
+    </tfoot>
+</table>
+        <div class="text-center">
+            <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shopping</a>
+        </div>
+    </div>
+        <div class="col-md-4">
+            <div class="text-right">
+                <h2 class="align-items-center d-flex">Order Summary</h2>
+                <p>Cart: (@Model.Cart?.Lines.Sum(x => x.Quantity)) items</p>
+                <p>Order Total: @Model.Cart?.CalculateTotal().ToString("c")</p>
+                <hr>
+            <form method="post" asp-page-handler="Checkout">
+                <div class="form-group">
+                    <label for="country">Country:</label>
+                    <input type="text" class="form-control" id="country" name="country">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" class="form-control" id="address" name="address">
+                </div>
+                <div class="form-group">
+                    <label for="bank">Bank:</label>
+                    <input type="text" class="form-control" id="bank" name="bank">
+                </div>
+                <div class="form-group">
+                    <label for="cardType">Card Type:</label>
+                    <select class="form-control" id="cardType" name="cardType">
+                        <option value="visa">Visa</option>
+                        <option value="mastercard">MasterCard</option>
+                        <!-- Add more options if needed -->
+                    </select>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Checkout</button>
+            </form>
+        </div>
+    </div>
+</div>

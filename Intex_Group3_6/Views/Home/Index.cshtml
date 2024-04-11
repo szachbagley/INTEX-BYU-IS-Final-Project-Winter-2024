@@ -1,7 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
 @model IEnumerable<RatedProducts>
 
 <div class="container">
@@ -46,15 +45,7 @@
             <div class="recommended-products-container d-flex overflow-auto">
                 @foreach (var product in Model)
                 {
-                    <div class="recommended-product" style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
-                        <div class="card">
-                            <img src="@product.imgLink" class="card-img-top" alt="@product.productName">
-                            <div class="card-body">
-                                <h5 class="card-title">@product.productName</h5>
-                                <p class="card-text">Price: $@product.price</p>
-                            </div>
-                        </div>
-                    </div>
+                    <partial name="ItemSummary" model="product" />
                 }
             </div>
         </div>
