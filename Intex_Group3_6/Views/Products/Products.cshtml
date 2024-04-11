@@ -8,34 +8,35 @@
 @model IQueryable<Product>
 <div class="container-fluid mb-20">
     <div class="row">
-        <div class="col-12">
-            <h1 class="text-center">Products</h1>
-        </div>
-    </div>
-    <div class="row">
+        <h1 class="text-center">Products</h1>
         <div class="col-md-3">
-            <div class="position-fixed">
-                filters go here
-            </div>
-    </div>
-    <div class="col-md-9">
-        <div class="row row-cols-1 row-cols-md-3 g-3">
-            @foreach (var product in productList)
-            {
+            <!-- Place the product-types component on the side -->
+            <div class="row m-1 p-1">
                 <div class="col">
-                    <div class="card h-100">
-                        <img src="@product.imgLink" class="card-img-top" alt="@product.productName">
-                        <div class="card-body">
-                            <h5 class="card-title">@product.productName</h5>
-                            <p class="card-text fw-bold">$@product.price</p>
-                            <a href="@Url.Action("ProductDetail", "Products", new { productName = product.productName })" class="btn btn-primary">View Product</a>
+                    <vc:product-types />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <!-- Products display area -->
+            <div class="row row-cols-1 row-cols-md-3 g-3">
+                @foreach (var product in productList)
+                {
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="@product.imgLink" class="card-img-top" alt="@product.productName">
+                            <div class="card-body">
+                                <h5 class="card-title">@product.productName</h5>
+                                <p class="card-text fw-bold">$@product.price</p>
+                                <a href="@Url.Action("ProductDetail", "Products", new { productName = product.productName })" class="btn btn-primary">View Product</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
 </div>
-</div>
+
 
 

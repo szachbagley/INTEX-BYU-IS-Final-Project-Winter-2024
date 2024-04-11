@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Intex_Group3_6.Data;
 using Intex_Group3_6.Models;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,10 +61,12 @@ app.UseSession();
 
 app.UseRouting();
 
+app.MapControllerRoute("pagetype", "{productName}", new { Controller = "Home", action = "Index" });
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.MapControllerRoute("productName", "{productName}", new { Controller = "Home", action = "Index" });
+
 
 app.UseAuthentication();
 app.UseAuthorization();

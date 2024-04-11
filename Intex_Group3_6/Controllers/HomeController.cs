@@ -27,6 +27,7 @@ public class HomeController : Controller
         var top10Sets = _repo.GetRatingsWithPictures();
 
         return View(top10Sets);
+
     } 
     
     public IActionResult Privacy()
