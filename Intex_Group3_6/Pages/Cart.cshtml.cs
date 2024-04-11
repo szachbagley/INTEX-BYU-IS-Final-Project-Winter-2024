@@ -73,17 +73,18 @@ namespace Intex_Group3_6.Pages
         public IActionResult OnPostCheckout(Order order, List<Cart.CartLine> cartLines)
         {
             _dataRepo.AddOrder(order);
-            for (int i = 0; i < cartLines.Count; i++)
-            {
-                LineItem item = new LineItem
-                {
-                    ProductId = cartLines[i].Product.productId,
-                    quantity = cartLines[i].Quantity,
-                    TransactionId = order.transactionId
-                };
-                _dataRepo.AddLineItem(item);
-            }
             _dataRepo.SaveChanges();
+            //for (int i = 0; i < cartLines.Count; i++)
+            //{
+            //    LineItem item = new LineItem
+            //    {
+            //        TransactionId = order.transactionId,
+            //        ProductId = cartLines[i].Product.productId,
+            //        quantity = cartLines[i].Quantity
+            //    };
+            //    _dataRepo.AddLineItem(item);
+            //}
+            //_dataRepo.SaveChanges();
             return new ViewResult { ViewName = "OrderConfirmation" };
         }
     }
