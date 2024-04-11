@@ -9,10 +9,11 @@
         <div class="col-md-6 bg-black d-flex align-items-center justify-content-center text-white position-relative">
             <h1 class="text-white">Aurora's Lego Shop</h1>
             <!-- White rectangle with curved edges -->
-            <div class="white-rectangle">
+            <a href="~/Products/Products" class="white-rectangle">
                 <p class="text-center mb-0 small" style="color: black;">See featured products</p>
                 <i class="fas fa-chevron-right arrow-icon" style="color: black;"></i>
-            </div>
+            </a>
+
         </div>
 
         <!-- Right column for the Lego blocks image -->
@@ -35,6 +36,7 @@
     <p class="mb-0 big-hey">Hey!</p>
     <p class="mb-0 personalized-message">For a more personalized experience, log in or create an account!</p>
     </div>
+    <br />
     
 </div>
 
@@ -42,11 +44,14 @@
     <div class="row">
         <div class="col-md-12">
             <h2>Recommended Products</h2>
+            
             <div class="recommended-products-container d-flex overflow-auto">
                 @foreach (var product in Model)
                 {
                     <partial name="ItemSummary" model="product" />
                 }
+                <!-- Shadowed arrow indicating more to scroll -->
+               
             </div>
         </div>
     </div>
@@ -115,6 +120,11 @@
             max-width: 100%;
         }
 
-       
+    .recommended-products-container img {
+        height: 250px; /* Adjust the height as needed */
+    }
+   
+  
+
 </style>
 
