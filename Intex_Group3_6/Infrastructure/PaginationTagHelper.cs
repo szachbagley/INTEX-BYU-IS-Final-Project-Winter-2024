@@ -53,7 +53,10 @@ namespace Intex_Group3_6.Infrastructure
                 }
 
                 // "Previous" link
-                CreatePageLink(PageModel.CurrentPage - 1, false, "Back");
+                if (PageModel.CurrentPage > 1)
+                {
+                    CreatePageLink(PageModel.CurrentPage - 1, false, "Back");
+                }
 
                 // Always show the first page
                 CreatePageLink(1, PageModel.CurrentPage == 1);
@@ -80,12 +83,15 @@ namespace Intex_Group3_6.Infrastructure
                     result.InnerHtml.AppendHtml("<li class=\"page-item disabled\"><span class=\"page-link\">...</span></li>");
                 }
 
-                // Always show the last page
                 CreatePageLink(PageModel.TotalPages, PageModel.CurrentPage == PageModel.TotalPages);
-
-                // "Next" link
-                CreatePageLink(PageModel.CurrentPage + 1, false, "Next");
-
+                
+                // Always show the last page
+                if (PageModel.CurrentPage != PageModel.TotalPages)
+                {
+                    // "Next" link
+                    CreatePageLink(PageModel.CurrentPage + 1, false, "Next");
+                }
+                
                 output.Content.SetHtmlContent(result);
             }
         }
