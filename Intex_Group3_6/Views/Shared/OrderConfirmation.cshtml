@@ -4,51 +4,56 @@
 @{
     ViewData["Title"] = "Order Confirmation";
 }
+@model Order
 
-@* 
-<div class="container text-center mt-5">
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <div class="bg-primary rounded-circle d-flex justify-content-center align-items-center" style="width: 120px; height:120px;">
-                <img src="~/Orange-Spaceman.png" class="img-fluid spaceman rounded-circle" alt="Lego Spaceman" style="width: 100px; height: 100px;">
+ 
+
+@if (Model.fraud == "1")
+{
+    <div class="container text-center mt-5">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div class="bg-primary rounded-circle d-flex justify-content-center align-items-center" style="width: 120px; height:120px;">
+                    <img src="~/Orange-Spaceman.png" class="img-fluid spaceman rounded-circle" alt="Lego Spaceman" style="width: 100px; height: 100px;">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <h1>Thanks for your order!</h1>
+                <p>Your order number is #@Model.transactionId</p>
+                <p>There were complications with your order, we are reviewing it now!</p>
+                <div class="mt-3">
+                    <a href="/Home" class="btn btn-primary me-2">Back to Home</a>
+                    <a href="/Products/Products" class="btn btn-primary">More Products</a>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row mt-3">
-        <div class="col">
-            <h1>Thanks for your order!</h1>
-            <p>Your order number is #23453</p>
-            <div class="mt-3">
-                <a href="/" class="btn btn-primary me-2">Back to Home</a>
-                <a href="/products" class="btn btn-primary">More Products</a>
+} else
+{
+    <div class="container text-center mt-5">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div class="bg-primary rounded-circle d-flex justify-content-center align-items-center" style="width: 120px; height:120px;">
+                    <img src="~/Orange-Spaceman.png" class="img-fluid spaceman rounded-circle" alt="Lego Spaceman" style="width: 100px; height: 100px;">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <h1>Thanks for your order!</h1>
+                <p>Your order number is #@Model.transactionId</p>
+                <div class="mt-3">
+                    <a href="/" class="btn btn-primary me-2">Back to Home</a>
+                    <a href="/products" class="btn btn-primary">More Products</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-THIS IS THE FRAUD ONE BELOW*@
+}
 
 
-<div class="container text-center mt-5">
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <div class="bg-primary rounded-circle d-flex justify-content-center align-items-center" style="width: 120px; height:120px;">
-                <img src="~/Orange-Spaceman.png" class="img-fluid spaceman rounded-circle" alt="Lego Spaceman" style="width: 100px; height: 100px;">
-            </div>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col">
-            <h1>Thanks for your order!</h1>
-            <p>Your order number is #23453</p>
-            <p>There were complications with your order, we are reviewing it now!</p>
-            <div class="mt-3">
-                <a href="/Home" class="btn btn-primary me-2">Back to Home</a>
-                <a href="/Products/Products" class="btn btn-primary">More Products</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
