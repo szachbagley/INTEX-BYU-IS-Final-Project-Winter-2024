@@ -48,11 +48,6 @@
 
 <nav class="pagination nav-link">
     <div page-model="@Model.PaginationInfo" page-action="AdminProducts" class="pagination"></div>
-    <select onchange="location.href = '@Url.Action("AdminProducts", "Admin")' + '?pageNum=1&pageSize=' + this.value">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-    </select>
 
 </nav>
 <br/><br/>
