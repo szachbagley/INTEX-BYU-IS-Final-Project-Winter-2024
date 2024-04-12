@@ -7,6 +7,7 @@ using Microsoft.ML.OnnxRuntime.Tensors;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 var securityConnection = builder.Configuration.GetConnectionString("SecurityConnection") ??
                        throw new InvalidOperationException("Connection string 'SecurityConnection' not found.");
@@ -42,6 +43,19 @@ builder.Services.AddSession();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
+
+app.Use(async (ctx, next) =>
+{
+    ctx.Response.Headers.Append("Content-Security-Policy",
+    "default-src 'self'; " +
+    "img-src * data:; " +
+    "style-src 'self' 'unsafe-inline' https://stackpath.bootstrapcdn.com; " +
+    "script-src 'self' 'unsafe-inline'");
+    await next();
+});
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
