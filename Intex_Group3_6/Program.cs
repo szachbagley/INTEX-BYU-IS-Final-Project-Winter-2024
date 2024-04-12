@@ -54,9 +54,6 @@ app.Use(async (ctx, next) =>
     await next();
 });
 
-
-
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
