@@ -1,0 +1,50 @@
+@model User
+
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<div class="col-4 mx-auto">
+    <section>
+        <form method="post" asp-controller="Admin" asp-action="EditUser">
+            <h2>Edit User</h2>
+            <hr />
+            <input type="hidden" asp-for="userId"/>
+            <label asp-for="userId" class="form-label">UserId</label>
+            <input asp-for="userId" class="form-control" readonly/>
+            <br/>
+            <label asp-for="firstName" class="form-label">First Name</label>
+            <input asp-for="firstName" class="form-control" readonly/>
+            <br/>            
+            <label asp-for="lastName" class="form-label">Last Name</label>
+            <input asp-for="lastName" class="form-control" readonly/>
+            <br/>   
+            <label asp-for="birthDate" class="form-label">Birth Date</label>
+            <input asp-for="birthDate" class="form-control" readonly/>
+            <br/>   
+            <label asp-for="country" class="form-label">Country</label>
+            <input asp-for="country" class="form-control" readonly/>
+            <br/>        
+            <label asp-for="email" class="form-label">Email</label>
+            <input asp-for="email" class="form-control" readonly/>
+            <br/>         
+            <label asp-for="gender" class="form-label">Gender</label>
+            <input asp-for="gender" class="form-control" readonly/>
+            <br/>            
+            <label asp-for="age" class="form-label">Age</label>
+            <input asp-for="age" class="form-control" readonly/>
+            <br/>
+            <label class="form-label">Current Role</label>
+            <input value="@Model.role" class="form-control" readonly/>
+            <br/>
+            <label asp-for="role" class="form-label">New Role</label><br/>
+            <select asp-for="role" class="form-select">
+                <option value="Customer" class="form-label">Customer</option>
+                <option value="Admin" class="form-label">Admin</option>
+            </select>
+            <br/>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a class="btn btn-warning" asp-controller="Admin" asp-action="AdminUsers">Cancel</a>
+        </form>
+    </section>
+</div>

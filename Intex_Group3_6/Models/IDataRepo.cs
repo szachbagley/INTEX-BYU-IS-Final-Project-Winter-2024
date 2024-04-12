@@ -34,6 +34,9 @@ namespace Intex_Group3_6.Models
         public void DeleteOrder(Order order);
         void AddProduct(Product product);
         public User GetUserByEmail(string email);
+        public void UpdateUser(User user);
+        public User GetUserById(int userId);
+        public void DeleteUser(User user);
     }
 
 }
