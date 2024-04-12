@@ -33,28 +33,33 @@
        
     </div>
     <div class="col-9">
-    <p class="mb-0 big-hey">Hey!</p>
-    <p class="mb-0 personalized-message">For a more personalized experience, log in or create an account!</p>
+        <p class="mb-0 big-hey">Hey!</p>
+        <p class="mb-0 personalized-message">For a more personalized experience, log in or create an account!</p>
     </div>
     <br />
     
 </div>
 
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Recommended Products</h2>
-            
+                @if (ViewBag.recProducts != null)
+                {
+                    <h2>Products for you</h2>
+                    <div class="recommended-products-container d-flex overflow-auto">
+                        <partial name="RecUser" model="@ViewBag.recProducts"/>
+                    </div>
+                }
+            <br/>
+            <h2>Popular Products</h2>
             <div class="recommended-products-container d-flex overflow-auto">
                 @foreach (var product in Model)
                 {
-                    <partial name="ItemSummary" model="product" />
+                    <partial name="ItemSummary" model="product"/>
 
                 }
-               
-
-                <partial name="RecUser" />
-               
             </div>
         </div>
     </div>

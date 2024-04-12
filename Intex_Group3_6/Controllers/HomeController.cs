@@ -11,12 +11,13 @@ using Microsoft.AspNetCore.Identity;
 using Intex_Group3_6.Infrastructure;
 
 
+
 namespace Intex_Group3_6.Controllers;
 
 public class HomeController : Controller
 {
     private IDataRepo _repo;
-    private readonly IHttpContextAccessor _sessionUserData;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
     private UserManager<IdentityUser> _userManager;
     private readonly InferenceSession _session;
@@ -26,19 +27,19 @@ public class HomeController : Controller
         _repo = repo;
         _userManager = userManager;
         _session = new InferenceSession("fraud_model3.onnx");
-        _sessionUserData = temp;
+        _httpContextAccessor = temp;
     }
 
 
 
     public IActionResult Index()
     {
-        var userData = _sessionUserData.HttpContext.Session.GetJson<User>("UserData");
+        var userData = _httpContextAccessor.HttpContext.Session.GetJson<User>("UserData");
 
         if (userData != null)
         { 
             var userId = userData.userId;
-            var recProducts = _repo.GetUserRec(userId);
+            var recProducts = _repo.GetUserRec(userId).ToList();
             ViewBag.recProducts = recProducts; 
 
         }
