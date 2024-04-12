@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Intex_Group3_6.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +15,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Intex_Group3_6.Models;
 
 namespace Intex_Group3_6.Areas.Identity.Pages.Account
 {
@@ -21,13 +23,19 @@ namespace Intex_Group3_6.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IDataRepo _repo;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger, UserManager<IdentityUser> userManager, IDataRepo repo)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
+            _repo = repo;
         }
 
+        public User? LoggedInUser { get; set; }
+        
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -115,6 +123,16 @@ namespace Intex_Group3_6.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    
+                    var identityUser = await _userManager.GetUserAsync(User);
+                    if (identityUser != null) 
+                    {
+                        LoggedInUser = _repo.GetUserByEmail(identityUser.Email);
+                    }
+                    
+                    // Store the user data in session
+                    HttpContext.Session.SetJson("UserData", LoggedInUser);
+                    
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
