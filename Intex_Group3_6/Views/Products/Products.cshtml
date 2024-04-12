@@ -8,16 +8,15 @@
 @model IQueryable<Product>
 <div class="container-fluid mb-20">
     <div class="row">
-        <div class="col-12">
-            <h1 class="text-center">Products</h1>
-        </div>
-    </div>
-    <div class="row">
+        <h1 class="text-center">Products</h1>
         <div class="col-md-3">
-            <div class="position-fixed">
-                filters go here
+            <!-- Place the product-types component on the side -->
+            <div class="row m-1 p-1">
+                <div class="col">
+                    <vc:product-types />
+                </div>
             </div>
-    </div>
+        </div>
     <div class="col-md-9">
         <div class="row row-cols-1 row-cols-md-3 g-3">
             @foreach (var product in productList)
@@ -33,6 +32,8 @@
                     </div>
                 </div>
             }
+
+      
         </div>
     </div>
 </div>

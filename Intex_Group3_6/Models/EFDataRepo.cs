@@ -338,4 +338,13 @@ public class EFDataRepo : IDataRepo
     {
         return _context.Users.FirstOrDefault(p => p.email == email);
     }
+
+    public void AddLineItem(LineItem lineItem)
+    {
+        _context.LineItems.Add(lineItem);
+    }
+    public void AddOrder(Order order)
+    {
+        _context.Orders.Add(order);
+    }
 }

@@ -5,7 +5,6 @@ namespace Intex_Group3_6.Models;
 
 public class LineItem
 {
-    [Key]
     public int TransactionId { get; set; }
     public int ProductId { get; set; }
     public required int quantity { get; set; }
