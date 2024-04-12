@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Delete Product";
+}
+@model User
+
+<div class="col-6 mx-auto">
+    <section>
+        <h2 class="text-center">Are you sure you want to delete</h2>
+        <h2 class="fw-bold text-center">@Model.firstName @Model.lastName?</h2>
+        <br/>
+        <br/>
+        <div class="container-fluid">
+            <div class="row mx-auto">
+                <div class="col text-end">
+                    <form method="post" asp-controller="Admin" asp-action="DeleteUser" class="d-inline">
+                        <input type="hidden" asp-for="userId" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+                <div class="col">
+                    <a class="btn btn-warning ms-2" asp-controller="Admin" asp-action="AdminUsers">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

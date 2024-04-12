@@ -12,7 +12,6 @@ public class EFDataRepo : IDataRepo
 {
     private DataContext _context;
     private UserManager<IdentityUser> _userManager;
-    
 
     public EFDataRepo(DataContext temp)
     {
@@ -301,7 +300,7 @@ public class EFDataRepo : IDataRepo
     {
         return _context.Products.FirstOrDefault(p => p.productId == productId);
     }
-
+    
     public void UpdateProduct(Product product) // Use this to edit products in the database
     {
         _context.Products.Update(product);
@@ -313,6 +312,23 @@ public class EFDataRepo : IDataRepo
         if (productToDelete != null)
         {
             _context.Products.Remove(productToDelete);
+        }
+    }
+    
+    public User GetUserById(int userId)
+    {
+        return _context.Users.FirstOrDefault(p => p.userId == userId);
+    }
+    public void UpdateUser(User user) // Use this to edit users in the database
+    {
+        _context.Users.Update(user);
+    }
+    public void DeleteUser(User user)
+    {
+        var userToDelete = _context.Users.FirstOrDefault(p => p.userId == user.userId);
+        if (userToDelete != null)
+        {
+            _context.Users.Remove(userToDelete);
         }
     }
 

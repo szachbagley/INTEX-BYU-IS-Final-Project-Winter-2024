@@ -143,6 +143,61 @@ public class AdminController : Controller
         _repo.SaveChanges();
         return RedirectToAction("AdminProducts");
     }
+    
+    [HttpGet]
+    public IActionResult EditUser(int id)
+    {
+        var userData = _sessionUserData.HttpContext.Session.GetJson<User>("UserData");
+        
+        if (userData is null)
+        {
+            return View("PleaseLogIn");
+        }
+        if (userData.role == "Admin")
+        {
+            var user = _repo.GetUserById(id);
+            return View(user);
+        }
+        else
+        {
+            return new ViewResult { ViewName = "Index" };
+        }
+    }
+    [HttpPost]
+    public IActionResult EditUser(User user)
+    {
+        _repo.UpdateUser(user);
+        _repo.SaveChanges();
+        return RedirectToAction("AdminUsers");
+    }
+    
+    [HttpGet]
+    public IActionResult DeleteUser(int id)
+    {
+        var userData = _sessionUserData.HttpContext.Session.GetJson<User>("UserData");
+        
+        if (userData is null)
+        {
+            return View("PleaseLogIn");
+        }
+        if (userData.role == "Admin")
+        {
+            var user = _repo.GetUserById(id);
+            return View(user);
+        }
+        else
+        {
+            return new ViewResult { ViewName = "Index" };
+        }
+    }
+
+    [HttpPost]
+    public IActionResult DeleteUser(User user)
+    {
+        _repo.DeleteUser(user);
+        _repo.SaveChanges();
+        return RedirectToAction("AdminUsers");
+    }
 
     [HttpGet]
     public IActionResult DeleteOrder(int id)
