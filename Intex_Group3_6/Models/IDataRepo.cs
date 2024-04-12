@@ -8,6 +8,9 @@ namespace Intex_Group3_6.Models
     public interface IDataRepo
     {
         void AddUser(User user);
+        void AddOrder(Order order);
+        void AddLineItem(LineItem lineItem);
+
         void SaveChanges();
 
         public IQueryable<User> GetUser(string email);
