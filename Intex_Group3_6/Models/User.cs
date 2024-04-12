@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Intex_Group3_6.Models;
-
 public class User
 {
     [Key]

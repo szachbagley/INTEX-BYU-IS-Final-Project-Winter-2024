@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Product> 
+
+@foreach (var product in Model)
+{
+    <div class="recommended-product" style="flex: 0 0 auto; width: 300px; margin-right: 10px;">
+        <div class="card">
+            <img src="@product.imgLink" class="card-img-top" alt="@product.productName">
+            <div class="card-body">
+                <h5 class="card-title">@product.productName</h5>
+                <p class="card-text">Price: $@product.price</p>
+    
+                <form id=@product.productId method="post" asp-page="/Cart">
+                    <input type="hidden" name="productId" value="@product.productId"/> 
+                    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+
+
