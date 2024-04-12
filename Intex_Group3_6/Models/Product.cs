@@ -5,7 +5,8 @@ namespace Intex_Group3_6.Models;
 public class Product
 {
     [Key]
-    public required int productId { get; set; }
+    [Required]
+    public int productId { get; set; }
     public string? productName { get; set; }
     public int year { get; set; }
     public int numParts { get; set; }

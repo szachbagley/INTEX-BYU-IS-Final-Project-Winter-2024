@@ -134,7 +134,8 @@ namespace Intex_Group3_6.Areas.Identity.Pages.Account
                     country = NewUser.country,
                     gender = NewUser.gender,
                     age = NewUser.age,
-                    email = Input.Email
+                    email = Input.Email,
+                    role = "Customer"
                 };
 
                 // Save the new user using your repository

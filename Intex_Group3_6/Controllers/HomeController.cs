@@ -236,15 +236,4 @@ public class HomeController : Controller
     {
         return View();
     }
-
-    public async Task<IActionResult> UserDetailTestAsync()
-    {
-        var identityUser = await _userManager.GetUserAsync(User);
-        if (identityUser != null)
-        {
-            var user = _repo.GetUserByEmail(identityUser.Email);
-            return View(user);
-        }
-        else { return View("Index"); }
-    }
 }

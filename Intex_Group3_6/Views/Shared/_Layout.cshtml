@@ -1,3 +1,6 @@
+@{
+    var userData = HttpContextAccessor.HttpContext.Session.GetJson<User>("UserData");
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +30,22 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>
+                    @if (userData != null)
+                    {
+                        @if (userData.role == "Admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminOrders">Admin Orders</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminProducts">Admin Products</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminUsers">Admin Users</a>
+                                </li>
+                            }
+                    }
+                    
                 </ul>
                 <partial name="_LoginPartial"/>
                     <a class="nav-link text-dark form-control-color" href="~/Cart">
