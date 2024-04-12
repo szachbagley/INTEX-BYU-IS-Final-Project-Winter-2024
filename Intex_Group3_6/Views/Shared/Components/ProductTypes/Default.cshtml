@@ -1,0 +1,45 @@
+﻿@using System.Text
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var currentPageSize = Context.Request.Query["pageSize"];
+    var optionsHtml = new StringBuilder();
+    var pageSizeOptions = new List<int> { 10, 20, 50 };
+
+    foreach (var size in pageSizeOptions)
+    {
+        if (currentPageSize == size.ToString())
+        {
+            optionsHtml.AppendLine($"<option value=\"{size}\" selected=\"selected\">{size}</option>");
+        }
+        else
+        {
+            optionsHtml.AppendLine($"<option value=\"{size}\">{size}</option>");
+        }
+    }
+}
+
+@model ProductFilterOptions
+
+<div class="d-grid gap-2">
+    <h3>Filters</h3>
+    <select class="form-select" onchange="location = this.value;">
+        <option value="">Select Color</option>
+        @foreach (var color in Model.PrimaryColors ?? Enumerable.Empty<string>())
+        {
+            <option value="@Url.Action("Products", "Products", new { productType = color })">@color</option>
+        }
+    </select>
+
+    <select class="form-select" onchange="location = this.value;">
+        <option value="">Select Category</option>
+        @foreach (var category in Model.Categories ?? Enumerable.Empty<string>())
+        {
+            <option value="@Url.Action("Products", "Products", new { productType = category })">@category</option>
+        }
+    </select>
+</div>
+    
+
+
