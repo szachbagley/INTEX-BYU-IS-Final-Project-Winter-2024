@@ -29,7 +29,14 @@ namespace Intex_Group3_6.Models
             }
         }
 
-        public void RemoveLine(Product proj) => Lines.RemoveAll(x => x.Product.productId == proj.productId);
+       public void RemoveLine(Product proj)
+{
+    if (proj != null)
+    {
+        Lines.RemoveAll(x => x.Product != null && x.Product.productId == proj.productId);
+    }
+}
+
 
         public void Clear() => Lines.Clear();
 

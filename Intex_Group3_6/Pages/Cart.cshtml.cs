@@ -41,7 +41,7 @@ namespace Intex_Group3_6.Pages
             ReturnUrl = returnUrl ?? "/";
             Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
             var identityUser = await _userManager.GetUserAsync(User);
-            if (identityUser != null) 
+            if (identityUser != null)
             {
                 LoggedInUser = _dataRepo.GetUserByEmail(identityUser.Email);
             }
@@ -69,7 +69,7 @@ namespace Intex_Group3_6.Pages
                 Cart.AddItem(product, 1);
                 HttpContext.Session.SetJson("cart", Cart);
             }
-            
+
             if (LoggedInUser != null)
             {
                 return RedirectToPage(new { returnUrl = returnUrl });
@@ -290,7 +290,7 @@ namespace Intex_Group3_6.Pages
                 _session.Dispose();
             }
         }
-        protected  void Dispose(bool disposing)
+        protected void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -298,7 +298,13 @@ namespace Intex_Group3_6.Pages
             }
             Dispose(disposing);
         }
+      
 
-        
+        public IActionResult OnPostRemove(int productId, string returnUrl)
+        {
+            Cart.RemoveLine(Cart.Lines.First(x => x.Product.productId == productId).Product);
+
+            return RedirectToPage(new { returnUrl = returnUrl });
+        }
     }
 }
