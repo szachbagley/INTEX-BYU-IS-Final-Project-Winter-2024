@@ -60,26 +60,59 @@
             {
                 <form method="post" asp-page-handler="Checkout">
                     <h2>@Model.LoggedInUser?.firstName's cart</h2>
-                    <input type="hidden" value="@Model.LoggedInUser.userId" asp-for="Order.userId" />
-                    <input type="hidden" value="CVC" asp-for="Order.entryMode" />
-                    <input type="hidden" value="@Model.Cart?.CalculateTotal()" asp-for="Order.transactionAmount" />
-                    <input type="hidden" value="Online" asp-for="Order.typeOfTransaction" />
-                    <input required type="text" value="@Model.LoggedInUser.country" asp-for="Order.countryOfTransaction" />
-                    <input required type="text" placeholder="Shipping Address" asp-for="Order.shippingAddress" />
-                    <input required type="text" placeholder="Bank" asp-for="Order.bank" />
-                    <select required asp-for="Order.typeOfCard">
-                        <option value="Visa">Visa</option>
-                        <option value="MasterCard">MaterCard</option>
-                    </select>
-                    <input type="hidden" value="1" asp-for="Order.fraud" />
-
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.LoggedInUser.userId" asp-for="Order.userId" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="CVC" asp-for="Order.entryMode" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.Cart?.CalculateTotal()" asp-for="Order.transactionAmount" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="Online" asp-for="Order.typeOfTransaction" />
+                    </div>
+                    @* <div class="form-group">
+                        <input required type="text" value="@Model.LoggedInUser.country" class="form-control" asp-for="Order.countryOfTransaction" />
+                    </div> *@
                     
-                    @for (int i = 0; i < lines.Count(); i++) {
-                        <input type="hidden" value="@lines[i].Product.productId" asp-for="CartLines[i].Product.productId" />
-                        <input type="hidden" value="@lines[i].CartLineId" asp-for="CartLines[i].CartLineId" />
-                        <input type="hidden" value="@lines[i].Quantity" asp-for="CartLines[i].Quantity" />
-                        }
+                    <div class="form-group">
+                        <select required type="text" placeholder="Shipping Address" class="form-control" asp-for="Order.shippingAddress">
+                            <option disabled selected>Select Country</option>
+                            <option value="USA">USA</option>
+                            <option value="UnitedKingdom">UnitedKingdom</option>
+                            <option value="India">India</option>
+                            <option value="China">China</option>
+                            <option value="Russia">Russia</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <select required type="text" placeholder="Bank" class="form-control" asp-for="Order.bank">
+                        <option disabled selected>Select Bank</option>
+                        <option value="Lloyds">Lloyds</option>
+                        <option value="Barclays">Barclays</option>
+                        <option value="RBS">RBS</option>
+                        <option value="HSBC">HSBC</option>
+                        <option value="Metro">Metro</option>
+                        <option value="Halifax">Halifax</option>
+                        <option value="Monzo">Monzo</option>
 
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <select required class="form-control" asp-for="Order.typeOfCard">
+                            <option disabled selected>Select Cardtype</option>
+                            <option value="Visa">Visa</option>
+                            <option value="MasterCard">MasterCard</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="hidden" value="1" asp-for="Order.fraud" />
+                    </div>
+                    <br />
                     <button type="submit" class="btn btn-primary">Checkout</button>
                 </form>
             } else
