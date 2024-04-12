@@ -231,8 +231,7 @@ public class HomeController : Controller
         }
         base.Dispose(disposing);
     }
-}
-
+    
     public IActionResult OrderConfirmation()
     {
         return View();
@@ -247,6 +246,5 @@ public class HomeController : Controller
             return View(user);
         }
         else { return View("Index"); }
-
     }
 }
