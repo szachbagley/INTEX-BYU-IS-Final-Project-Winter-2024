@@ -65,9 +65,10 @@ namespace Intex_Group3_6.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = total
+                    TotalItems = total,
+                    CurrentProductType = productType
                 },
-                CurrentProductType = productType
+                
             };
 
             // Return the view with the view model

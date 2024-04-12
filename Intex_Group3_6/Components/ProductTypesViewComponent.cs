@@ -1,3 +1,4 @@
+using Intex_Group3_6.Models.ViewModels;
 ﻿// Necessary namespaces for functionality
 using Intex_Group3_6.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,14 +19,13 @@ namespace Intex_Group3_6.Components
             _dataRepo = temp;
         }
 
+        public async Task<IViewComponentResult> InvokeAsync(ProductPageViewModel model)
         // The default method that is invoked when the component is used in a view
-        public IViewComponentResult Invoke()
         {
             // Store the current 'productType' from the route data into ViewBag for access in the view
             ViewBag.SelectedProductType = RouteData?.Values["productType"];
-
+            model.FilterOptions = new ProductFilterOptions
             // Create a new instance of ProductFilterOptions containing distinct colors and categories from products
-            var productTypes = new ProductFilterOptions
             {
                 // Query the data repository for products, select distinct primary colors, and convert to a list
                 PrimaryColors = _dataRepo.Products
@@ -40,8 +40,8 @@ namespace Intex_Group3_6.Components
                     .ToList()
             };
 
+            return View(model);
             // Return the view for this component, passing the productTypes model to the view
-            return View(productTypes);
         }
     }
 }
