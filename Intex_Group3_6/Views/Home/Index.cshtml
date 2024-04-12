@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var userData = HttpContextAccessor.HttpContext.Session.GetJson<User>("UserData");
 }
 @model IEnumerable<RatedProducts>
 
@@ -26,34 +27,35 @@
 
 <!-- Blue curved rectangle below the image -->
 
-
-<div class="row blue-curved-rectangle">
-    <div class="col-3 spaceman-container">
-        <img src="Orange-Spaceman.png" class="img-fluid spaceman" alt="Lego Spaceman">
-       
+@if (userData is null)
+{
+    <div class="row blue-curved-rectangle">
+        <div class="col-3 spaceman-container">
+            <img src="Orange-Spaceman.png" class="img-fluid spaceman" alt="Lego Spaceman">
+           
+        </div>
+        <div class="col-9">
+            <p class="mb-0 big-hey">Hey!</p>
+            <p class="mb-0 personalized-message">For a more personalized experience, log in or create an account!</p>
+        </div>
+        <br />
     </div>
-    <div class="col-9">
-        <p class="mb-0 big-hey">Hey!</p>
-        <p class="mb-0 personalized-message">For a more personalized experience, log in or create an account!</p>
-    </div>
-    <br />
-    
-</div>
-
-
+}
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-                @if (ViewBag.recProducts != null)
+                @if (ViewBag.recProducts != null && userData.role != "Admin")
                 {
-                    <h2>Products for you</h2>
+                    <br/>
+                    <br/>
+                    <h1>Products for you</h1>
                     <div class="recommended-products-container d-flex overflow-auto">
                         <partial name="RecUser" model="@ViewBag.recProducts"/>
                     </div>
                 }
             <br/>
-            <h2>Popular Products</h2>
+            <h1>Popular Products</h1>
             <div class="recommended-products-container d-flex overflow-auto">
                 @foreach (var product in Model)
                 {
