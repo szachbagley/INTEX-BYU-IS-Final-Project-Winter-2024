@@ -10,7 +10,7 @@
 </head>
 <body>
 <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-yellow border-bottom box-shadow mb-3 header-container">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-yellow border-bottom box-shadow mb-3 header-container">
         <div class="container-fluid">
             <img src="~/img/festisite_lego.png" style="height: 70px"/>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -29,8 +29,8 @@
                     </li>
                 </ul>
                 <partial name="_LoginPartial"/>
-                    <a class="nav-link text-dark form-control-color" href="~/Cart">
-                        @*Change the asp-action*@
+                <a class="nav-link text-dark form-control-color" href="~/Cart">
+                    @*Change the asp-action*@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                     </svg>
@@ -43,6 +43,14 @@
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
+</div><br/><br/>
+
+<div class="fixed-bottom bg-light p-3 text-center" id="cookieConsentBanner" style="display: none;">
+    <p>This website uses cookies to ensure you get the best experience on our website. 
+        <a href="/privacy">Learn more</a>
+    </p>
+    <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Accept</button>
+    <button class="btn btn-secondary btn-sm" onclick="declineCookies()">Decline</button>
 </div>
 
 <footer class="border-top footer text-muted">
@@ -50,6 +58,30 @@
         &copy; 2024 - Intex_Group3_6 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </div>
 </footer>
+<script>
+    function checkCookieConsent() {
+        // Check if the cookie consent has been set
+        return document.cookie.split(';').some((item) => item.trim().startsWith('cookieConsent='));
+    }
+
+    function acceptCookies() {
+        document.cookie = "cookieConsent=true; path=/";
+        hideConsentBanner();
+    }
+
+    function declineCookies() {
+        document.cookie = "cookieConsent=false; path=/";
+        hideConsentBanner();
+    }
+
+    function hideConsentBanner() {
+        document.getElementById('cookieConsentBanner').style.display = 'none';
+    }
+
+    if (!checkCookieConsent()) {
+        document.getElementById('cookieConsentBanner').style.display = 'block';
+    }
+</script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
