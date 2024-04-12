@@ -302,7 +302,9 @@ namespace Intex_Group3_6.Pages
 
         public IActionResult OnPostRemove(int productId, string returnUrl)
         {
+            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
             Cart.RemoveLine(Cart.Lines.First(x => x.Product.productId == productId).Product);
+            HttpContext.Session.SetJson("cart", Cart);
 
             return RedirectToPage(new { returnUrl = returnUrl });
         }

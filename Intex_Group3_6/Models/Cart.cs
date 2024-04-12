@@ -7,7 +7,7 @@ namespace Intex_Group3_6.Models
     public class Cart
     {
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
-        public void AddItem(Product proj, int quantity)
+        public virtual void AddItem(Product proj, int quantity)
         {
             CartLine? line = Lines
                 .Where(x => x.Product.productId == proj.productId)
@@ -29,16 +29,11 @@ namespace Intex_Group3_6.Models
             }
         }
 
-       public void RemoveLine(Product proj)
-{
-    if (proj != null)
-    {
-        Lines.RemoveAll(x => x.Product != null && x.Product.productId == proj.productId);
-    }
-}
+        public virtual void RemoveLine(Product product) => Lines.RemoveAll(x => x.Product.productId == product.productId);
 
 
-        public void Clear() => Lines.Clear();
+
+        public virtual void Clear() => Lines.Clear();
 
         public decimal CalculateTotal() => (decimal)Lines.Sum(x => x.Product.price * x.Quantity);
         
