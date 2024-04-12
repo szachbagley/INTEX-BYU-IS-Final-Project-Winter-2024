@@ -72,19 +72,24 @@ namespace Intex_Group3_6.Pages
 
         public IActionResult OnPostCheckout(Order order, List<Cart.CartLine> cartLines)
         {
+            DateTime datetime = DateTime.Now;
+            order.transactionDate = datetime;
+            order.dayOfWeek = datetime.DayOfWeek.ToString();
+            order.time = datetime.Hour;
+
             _dataRepo.AddOrder(order);
             _dataRepo.SaveChanges();
-            //for (int i = 0; i < cartLines.Count; i++)
-            //{
-            //    LineItem item = new LineItem
-            //    {
-            //        TransactionId = order.transactionId,
-            //        ProductId = cartLines[i].Product.productId,
-            //        quantity = cartLines[i].Quantity
-            //    };
-            //    _dataRepo.AddLineItem(item);
-            //}
-            //_dataRepo.SaveChanges();
+            for (int i = 0; i < cartLines.Count; i++)
+            {
+                LineItem item = new LineItem
+                {
+                    TransactionId = order.transactionId,
+                    ProductId = cartLines[i].Product.productId,
+                    quantity = cartLines[i].Quantity
+                };
+                _dataRepo.AddLineItem(item);
+            }
+            _dataRepo.SaveChanges();
             return new ViewResult { ViewName = "OrderConfirmation" };
         }
     }

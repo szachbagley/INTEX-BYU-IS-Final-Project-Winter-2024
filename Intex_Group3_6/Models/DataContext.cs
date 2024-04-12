@@ -11,16 +11,13 @@ public class DataContext : DbContext
     public DbSet<ItemRec> ItemRecs { get; set; }
     public DbSet<UserRec> UserRecs { get; set; }
     public DbSet<LineItem> LineItems { get; set; }
-    public class YourDbContext : DbContext
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public DbSet<LineItem> LineItems { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<LineItem>()
-                .HasKey(li => new { li.TransactionId, li.ProductId });
-        }
+        modelBuilder.Entity<LineItem>()
+            .HasKey(li => new { li.TransactionId, li.ProductId });
     }
+
 
     public DbSet<Order> Orders { get; set; }
     public DbSet<Product> Products { get; set; }
