@@ -46,6 +46,7 @@ namespace Intex_Group3_6.Infrastructure
                     TagBuilder tag = new TagBuilder("a");
                     tag.AddCssClass("page-link");
                     PageUrlValues["pageNum"] = i;
+                    PageUrlValues["productType"] = PageModel.CurrentProductType;
                     tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
                     tag.InnerHtml.AppendHtml(text ?? i.ToString());
                     listItem.InnerHtml.AppendHtml(tag);

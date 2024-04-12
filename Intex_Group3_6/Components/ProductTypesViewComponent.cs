@@ -1,4 +1,5 @@
 ﻿using Intex_Group3_6.Models;
+using Intex_Group3_6.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 
@@ -14,10 +15,10 @@ namespace Intex_Group3_6.Components
             _dataRepo = temp;
         }
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync(ProductPageViewModel model)
         {
             ViewBag.SelectedProductType = RouteData?.Values["productType"];
-            var productTypes = new ProductFilterOptions
+            model.FilterOptions = new ProductFilterOptions
             {
                 PrimaryColors = _dataRepo.Products
                     .Select(x => x.primaryColor)
@@ -29,7 +30,7 @@ namespace Intex_Group3_6.Components
                     .ToList()
             };
 
-            return View(productTypes);
+            return View(model);
         }
     }
 }

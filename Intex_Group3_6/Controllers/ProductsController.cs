@@ -52,9 +52,10 @@ namespace Intex_Group3_6.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = total
+                    TotalItems = total,
+                    CurrentProductType = productType
                 },
-                CurrentProductType = productType
+                
             };
             return View(productPage); // Pass productData directly
         }

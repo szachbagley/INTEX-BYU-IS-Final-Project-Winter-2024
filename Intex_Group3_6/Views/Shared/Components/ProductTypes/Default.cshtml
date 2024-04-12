@@ -2,6 +2,7 @@
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@model ProductPageViewModel
 @{
     var currentPageSize = Context.Request.Query["pageSize"];
     var optionsHtml = new StringBuilder();
@@ -20,23 +21,21 @@
     }
 }
 
-@model ProductFilterOptions
-
 <div class="d-grid gap-2">
     <h3>Filters</h3>
     <select class="form-select" onchange="location = this.value;">
         <option value="">Select Color</option>
-        @foreach (var color in Model.PrimaryColors ?? Enumerable.Empty<string>())
+        @foreach (var color in Model.FilterOptions.PrimaryColors ?? Enumerable.Empty<string>())
         {
-            <option value="@Url.Action("Products", "Products", new { productType = color })">@color</option>
+            <option value="@Url.Action("Products", "Products", new { productType = color, pageNum = Model.PaginationInfo.CurrentPage, pageSize = Model.PaginationInfo.ItemsPerPage})">@color</option>
         }
     </select>
 
     <select class="form-select" onchange="location = this.value;">
         <option value="">Select Category</option>
-        @foreach (var category in Model.Categories ?? Enumerable.Empty<string>())
+        @foreach (var category in Model.FilterOptions.Categories ?? Enumerable.Empty<string>())
         {
-            <option value="@Url.Action("Products", "Products", new { productType = category })">@category</option>
+            <option value="@Url.Action("Products", "Products", new { productType = category, pageSize = Model.PaginationInfo.ItemsPerPage })">@category</option>
         }
     </select>
 </div>
