@@ -1,24 +1,43 @@
 ﻿@page
+
 @model PersonalDataModel
 @{
     ViewData["Title"] = "Personal Data";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
+    var userData = HttpContextAccessor.HttpContext.Session.GetJson<User>("UserData");
 }
 
 <h3>@ViewData["Title"]</h3>
 
 <div class="row">
     <div class="col-md-6">
-        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
-        <p>
-            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
-        </p>
-        <form id="download-data" asp-page="DownloadPersonalData" method="post">
-            <button class="btn btn-primary" type="submit">Download</button>
+        <p>You Info</p>
+        <form method="post">
+            <input type="hidden" id="userId" value="@userData.userId"/>
+            <br/>
+            <label for="firstName">First Name</label>
+            <input id="firstName" name="firstName" value="@userData.firstName"/>
+            <br/>
+            <label for="lastName">Last Name</label>
+            <input id="lastName" name="lastName" value="@userData.lastName"/>
+            <br/>
+            <label for="birthDate">Birth Date</label>
+            <input id="birthDate" name="birthDate" value="@userData.birthDate"/>
+            <br/>
+            <label for="country">Country</label>
+            <input id="country" name="country" value="@userData.country"/>
+            <br/>
+            <label for="gender">Gender</label>
+            <input id="gender" name="gender" value="@userData.gender"/>
+            <br/>
+            <label for="age">Age</label>
+            <input id="age" name="age" value="@userData.firstName"/>
+            <br/>
+            <input type="hidden" id="email" name="email" value="@userData.email"/>
+            <input type="hidden" id="role" name="role" value="@userData.role"/>
+            
+            <button class="btn btn-primary" type="submit">Update Info</button>
         </form>
-        <p>
-            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Delete</a>
-        </p>
     </div>
 </div>
 
