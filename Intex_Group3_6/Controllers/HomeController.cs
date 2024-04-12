@@ -8,6 +8,7 @@ using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
 
 using Microsoft.AspNetCore.Identity;
+using Intex_Group3_6.Infrastructure;
 
 
 namespace Intex_Group3_6.Controllers;
@@ -15,21 +16,32 @@ namespace Intex_Group3_6.Controllers;
 public class HomeController : Controller
 {
     private IDataRepo _repo;
+    private readonly IHttpContextAccessor _sessionUserData;
 
     private UserManager<IdentityUser> _userManager;
     private readonly InferenceSession _session;
 
-    public HomeController(IDataRepo repo, UserManager<IdentityUser> userManager)
+    public HomeController(IDataRepo repo, UserManager<IdentityUser> userManager, IHttpContextAccessor temp)
     {
         _repo = repo;
         _userManager = userManager;
         _session = new InferenceSession("fraud_model3.onnx");
+        _sessionUserData = temp;
     }
 
 
 
     public IActionResult Index()
     {
+        var userData = _sessionUserData.HttpContext.Session.GetJson<User>("UserData");
+
+        if (userData != null)
+        { 
+            var userId = userData.userId;
+            var recProducts = _repo.GetUserRec(userId);
+            ViewBag.recProducts = recProducts; 
+
+        }
         // Retrieve top 10 reviewed LEGO sets
         var top10Sets = _repo.GetRatingsWithPictures();
 

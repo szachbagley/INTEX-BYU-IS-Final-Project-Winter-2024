@@ -347,4 +347,30 @@ public class EFDataRepo : IDataRepo
     {
         _context.Orders.Add(order);
     }
+
+    public IQueryable<Product> GetUserRec(int userId)
+    {
+        var userRec = _context.UserRecs.FirstOrDefault(u => u.userId == userId);
+
+        List<string> recommendations = new List<string>();
+
+        if (userRec != null)
+        {
+            recommendations.AddRange(new List<string>
+        {
+            userRec.rec1,
+            userRec.rec2,
+            userRec.rec3,
+            userRec.rec4,
+            userRec.rec5
+        });
+
+
+        }
+
+        var products = _context.Products.Where(p => recommendations.Contains(p.productName));
+
+        return products;
+
+    }
 }
