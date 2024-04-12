@@ -1,6 +1,10 @@
 using Intex_Group3_6.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.ML.OnnxRuntime.Tensors;
+using Microsoft.ML.OnnxRuntime;
 
 namespace Intex_Group3_6.Models;
 
@@ -8,17 +12,19 @@ public class EFDataRepo : IDataRepo
 {
     private DataContext _context;
     private UserManager<IdentityUser> _userManager;
-  
-    public EFDataRepo(DataContext temp) 
-    { 
-        _context = temp;
-    }
     
+
+    public EFDataRepo(DataContext temp)
+    {
+        _context = temp;
+       
+    }
+
     public void AddUser(User user) // Use this to add a user to the database
     {
         _context.Users.Add(user);
     }
-    
+
     public void SaveChanges() // Use this to save any changes to the database
     {
         _context.SaveChanges();
@@ -35,17 +41,17 @@ public class EFDataRepo : IDataRepo
     public IEnumerable<RatedProducts> GetRatingsWithPictures()
     {
         var query = (from rating in _context.AvgRatings
-                         join product in _context.Products on rating.productId equals product.productId
+                     join product in _context.Products on rating.productId equals product.productId
                      orderby rating.avgRating descending
                      select new RatedProducts
-                         {
-                             productId = product.productId,
-                             productName = product.productName,
-                             imgLink = product.imgLink,
-                             price = product.price,
-                             avgRating = rating.avgRating
+                     {
+                         productId = product.productId,
+                         productName = product.productName,
+                         imgLink = product.imgLink,
+                         price = product.price,
+                         avgRating = rating.avgRating
 
-                         }).Take(9);
+                     }).Take(9);
 
 
         return query.ToList();
@@ -53,7 +59,7 @@ public class EFDataRepo : IDataRepo
 
     public ProductDetailViewModel GetProductDetail(string productName)
     {
-        var query = (from  product in _context.Products
+        var query = (from product in _context.Products
                      join itemrec in _context.ItemRecs on product.productName equals itemrec.item
                      where product.productName == productName
                      select new
@@ -63,7 +69,7 @@ public class EFDataRepo : IDataRepo
                          year = product.year,
                          numParts = product.numParts,
                          price = product.price,
-                         imgLink= product.imgLink,
+                         imgLink = product.imgLink,
                          primaryColor = product.primaryColor,
                          secondaryColor = product.secondaryColor,
                          description = product.description,
@@ -82,88 +88,88 @@ public class EFDataRepo : IDataRepo
                          rec10Name = itemrec.rec10
                      }).SingleOrDefault();
 
-            var rec1 = (from product in _context.Products
-                        where product.productName == query.rec1Name
-                        select new
-                        {
-                            recName = product.productName,
-                            recId = product.productId,
-                            recImg = product.imgLink
-                        }).SingleOrDefault();
+        var rec1 = (from product in _context.Products
+                    where product.productName == query.rec1Name
+                    select new
+                    {
+                        recName = product.productName,
+                        recId = product.productId,
+                        recImg = product.imgLink
+                    }).SingleOrDefault();
 
-            var rec2 = (from product in _context.Products
-                        where product.productName == query.rec2Name
-                        select new
-                        {
-                            recName = product.productName,
-                            recId = product.productId,
-                            recImg = product.imgLink
-                        }).SingleOrDefault();
+        var rec2 = (from product in _context.Products
+                    where product.productName == query.rec2Name
+                    select new
+                    {
+                        recName = product.productName,
+                        recId = product.productId,
+                        recImg = product.imgLink
+                    }).SingleOrDefault();
 
-            var rec3 = (from product in _context.Products
-                        where product.productName == query.rec3Name
-                        select new
-                        {
-                            recName = product.productName,
-                            recId = product.productId,
-                            recImg = product.imgLink
-                        }).SingleOrDefault();
-            var rec4 = (from product in _context.Products
-                        where product.productName == query.rec4Name
-                        select new
-                        {
-                            recName = product.productName,
-                            recId = product.productId,
-                            recImg = product.imgLink
-                        }).SingleOrDefault();
-            var rec5 = (from product in _context.Products
-                        where product.productName == query.rec5Name
-                        select new
-                        {
-                            recName = product.productName,
-                            recId = product.productId,
-                            recImg = product.imgLink
-                        }).SingleOrDefault();
-            var rec6 = (from product in _context.Products
-                        where product.productName == query.rec6Name
-                        select new
-                        {
-                            recName = product.productName,
-                            recId = product.productId,
-                            recImg = product.imgLink
-                        }).SingleOrDefault();
-            var rec7 = (from product in _context.Products
-                        where product.productName == query.rec7Name
-                        select new
-                        {
-                            recName = product.productName,
-                            recId = product.productId,
-                            recImg = product.imgLink
-                        }).SingleOrDefault();
-            var rec8 = (from product in _context.Products
-                        where product.productName == query.rec8Name
-                        select new
-                        {
-                            recName = product.productName,
-                            recId = product.productId,
-                            recImg = product.imgLink
-                        }).SingleOrDefault();
-            var rec9 = (from product in _context.Products
-                        where product.productName == query.rec9Name
-                        select new
-                        {
-                            recName = product.productName,
-                            recId = product.productId,
-                            recImg = product.imgLink
-                        }).SingleOrDefault();
-            var rec10 = (from product in _context.Products
-                        where product.productName == query.rec10Name
-                        select new
-                        {
-                            recName = product.productName,
-                            recId = product.productId,
-                            recImg = product.imgLink
-                        }).SingleOrDefault();
+        var rec3 = (from product in _context.Products
+                    where product.productName == query.rec3Name
+                    select new
+                    {
+                        recName = product.productName,
+                        recId = product.productId,
+                        recImg = product.imgLink
+                    }).SingleOrDefault();
+        var rec4 = (from product in _context.Products
+                    where product.productName == query.rec4Name
+                    select new
+                    {
+                        recName = product.productName,
+                        recId = product.productId,
+                        recImg = product.imgLink
+                    }).SingleOrDefault();
+        var rec5 = (from product in _context.Products
+                    where product.productName == query.rec5Name
+                    select new
+                    {
+                        recName = product.productName,
+                        recId = product.productId,
+                        recImg = product.imgLink
+                    }).SingleOrDefault();
+        var rec6 = (from product in _context.Products
+                    where product.productName == query.rec6Name
+                    select new
+                    {
+                        recName = product.productName,
+                        recId = product.productId,
+                        recImg = product.imgLink
+                    }).SingleOrDefault();
+        var rec7 = (from product in _context.Products
+                    where product.productName == query.rec7Name
+                    select new
+                    {
+                        recName = product.productName,
+                        recId = product.productId,
+                        recImg = product.imgLink
+                    }).SingleOrDefault();
+        var rec8 = (from product in _context.Products
+                    where product.productName == query.rec8Name
+                    select new
+                    {
+                        recName = product.productName,
+                        recId = product.productId,
+                        recImg = product.imgLink
+                    }).SingleOrDefault();
+        var rec9 = (from product in _context.Products
+                    where product.productName == query.rec9Name
+                    select new
+                    {
+                        recName = product.productName,
+                        recId = product.productId,
+                        recImg = product.imgLink
+                    }).SingleOrDefault();
+        var rec10 = (from product in _context.Products
+                     where product.productName == query.rec10Name
+                     select new
+                     {
+                         recName = product.productName,
+                         recId = product.productId,
+                         recImg = product.imgLink
+                     }).SingleOrDefault();
 
         ProductDetailViewModel model = new ProductDetailViewModel
         {
@@ -212,7 +218,7 @@ public class EFDataRepo : IDataRepo
         };
 
         return model;
-        
+
     }
 
     public AdminOrdersViewModel GetOrders(int pageNum)
@@ -265,7 +271,7 @@ public class EFDataRepo : IDataRepo
 
         return model;
     }
-    
+
     public AdminProductsViewModel GetProducts(int pageNum, int pageSize)
     {
         var query = _context.Products;
@@ -295,7 +301,7 @@ public class EFDataRepo : IDataRepo
     {
         return _context.Products.FirstOrDefault(p => p.productId == productId);
     }
-    
+
     public void UpdateProduct(Product product) // Use this to edit products in the database
     {
         _context.Products.Update(product);
@@ -309,12 +315,12 @@ public class EFDataRepo : IDataRepo
             _context.Products.Remove(productToDelete);
         }
     }
-    
+
     public Order GetOrderById(int transactionId)
     {
         return _context.Orders.FirstOrDefault(o => o.transactionId == transactionId);
     }
-    
+
     public void DeleteOrder(Order order)
     {
         var orderToDelete = _context.Orders.FirstOrDefault(o => o.transactionId == order.transactionId);
@@ -347,4 +353,10 @@ public class EFDataRepo : IDataRepo
     {
         _context.Orders.Add(order);
     }
+
+
+
+    
+
+    
 }
